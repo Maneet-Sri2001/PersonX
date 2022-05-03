@@ -33,7 +33,7 @@ public class TaskNetwork {
   private final String userId;
   private final Context context;
   private final View view;
-  private UtilService utilService = new UtilService();
+  private final UtilService utilService = new UtilService();
   
   public TaskNetwork(String userId, Context context, View view) {
     this.userId = userId;
@@ -127,7 +127,7 @@ public class TaskNetwork {
     }, new Response.ErrorListener() {
       @Override
       public void onErrorResponse(VolleyError error) {
-        Toast.makeText(context.getApplicationContext(), "Error : " + error.toString(), Toast.LENGTH_SHORT).show();
+        TastyToasty.error(context, error.toString()).show();
       }
     });
     
@@ -155,16 +155,16 @@ public class TaskNetwork {
             TaskViewModel.insert(taskModal);
           }
           String message = new JSONObject(response).getString("message");
-          utilService.showSnackBar(view, message);
+          TastyToasty.success(context, message).show();
         } catch (Exception e) {
-          Toast.makeText(context.getApplicationContext(), "Error : " + e.getMessage(), Toast.LENGTH_SHORT).show();
+          TastyToasty.error(context, e.getMessage()).show();
           e.printStackTrace();
         }
       }
     }, new Response.ErrorListener() {
       @Override
       public void onErrorResponse(VolleyError error) {
-        Toast.makeText(context.getApplicationContext(), "Error : " + error, Toast.LENGTH_SHORT).show();
+        TastyToasty.error(context, error.toString()).show();
       }
     });
     RequestQueue requestQueue = Volley.newRequestQueue(context);
@@ -174,7 +174,6 @@ public class TaskNetwork {
   //Update Existing Task
   public void updateTask(TaskModel taskModal) {
     String url = "https://personx.herokuapp.com/task/" + taskModal.get_id();
-    Toast.makeText(context, taskModal.getTaskDes(), Toast.LENGTH_SHORT).show();
     HashMap<String, String> body = new HashMap<>();
     body.put("date", taskModal.getDate());
     body.put("time", taskModal.getTime());
@@ -209,7 +208,7 @@ public class TaskNetwork {
           try {
             String res = new String(response.data, HttpHeaderParser.parseCharset(response.headers, "utf-8"));
             JSONObject obj = new JSONObject(res);
-            TastyToasty.error(context.getApplicationContext(), "Error : " + obj.getString("message")).show();
+            TastyToasty.error(context.getApplicationContext(), obj.getString("message")).show();
           } catch (JSONException | UnsupportedEncodingException je) {
             je.printStackTrace();
           }

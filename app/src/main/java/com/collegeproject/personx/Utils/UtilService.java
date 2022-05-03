@@ -1,4 +1,5 @@
 package com.collegeproject.personx.Utils;
+
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
@@ -9,13 +10,28 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 
 import com.collegeproject.personx.Model.TaskModel;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 public class UtilService {
+  
+  public static int priorityColor(TaskModel taskModal) {
+    int color = 0;
+    if (taskModal.getPriority().equalsIgnoreCase("HIGH"))
+      color = Color.argb(200, 201, 21, 23);
+    else if (taskModal.getPriority().equalsIgnoreCase("MEDIUM"))
+      color = Color.argb(200, 155, 179, 0);
+    else
+      color = Color.argb(200, 51, 181, 129);
+    return color;
+  }
+  
+  public static String formatDate(String date) {
+    //SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, MMM d, yy");
+    return date;// dateFormat.format(date);
+  }
   
   public void hideKeyboard(View view, Activity activity) {
     try {
@@ -24,28 +40,6 @@ public class UtilService {
     } catch (Exception e) {
       e.printStackTrace();
     }
-  }
-  
-  public void showSnackBar(View view, String message) {
-    Snackbar.make(view, message, Snackbar.LENGTH_LONG).show();
-  }
-  
-  public static int priorityColor(TaskModel taskModal) {
-    int color = 0;
-    if (taskModal.getPriority().equals("HIGH"))
-      color = Color.argb(200, 201, 21, 23);
-    else if (taskModal.getPriority().equals("MEDIUM"))
-      color = Color.argb(200, 155, 179, 0);
-    else
-      color = Color.argb(200, 51, 181, 129);
-    return color;
-  }
-  
-  public static String formatDate(String date) {
-//        SimpleDateFormat simpleDateFormat = (SimpleDateFormat) SimpleDateFormat.getDateInstance();
-//        simpleDateFormat.applyPattern("EEE, MMM d, ''yy");
-//        return simpleDateFormat.format(date);
-    return date;
   }
   
   public void selectDate(TextView textView) {

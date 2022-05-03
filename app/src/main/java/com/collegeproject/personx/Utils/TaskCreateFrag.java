@@ -25,16 +25,15 @@ import com.collegeproject.personx.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.util.HashMap;
 import java.util.Locale;
 
 public class TaskCreateFrag extends BottomSheetDialogFragment {
-  private Context context;
   private static UtilService utilService;
+  private static String userId;
+  private Context context;
   private EditText taskDes, taskNote;
   private TextView taskDate, taskDeadline, taskCategory, taskTag;
   private ImageView category, tags, notes, taskRemind, taskRepeat, submit, taskPriority;
-  private static String userId;
   private SharedPreferenceClass sharedPreferenceClass;
   private TaskNetwork taskNetwork;
   

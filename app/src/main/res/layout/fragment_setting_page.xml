@@ -131,7 +131,7 @@
                         android:layout_marginTop="30dp"
                         android:layout_marginEnd="10dp"
                         android:layout_marginBottom="30dp"
-                        android:src="@drawable/date_time" />
+                        android:src="@drawable/date" />
 
                     <TextView
                         android:id="@+id/datendtime"

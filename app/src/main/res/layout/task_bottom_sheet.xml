@@ -188,7 +188,7 @@
                 android:cropToPadding="true"
                 android:longClickable="true"
                 android:padding="3dp"
-                android:src="@drawable/ic_flag" />
+                android:src="@drawable/ic_deadline" />
 
             <ImageView
                 android:id="@+id/task_repeat"

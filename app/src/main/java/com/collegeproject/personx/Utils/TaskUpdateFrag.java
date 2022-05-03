@@ -22,7 +22,6 @@ import androidx.annotation.Nullable;
 import com.collegeproject.personx.Model.TaskModel;
 import com.collegeproject.personx.NetworkFile.TaskNetwork;
 import com.collegeproject.personx.R;
-import com.collegeproject.personx.ViewModel.TaskViewModel;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -30,17 +29,17 @@ import java.util.HashMap;
 import java.util.Locale;
 
 public class TaskUpdateFrag extends BottomSheetDialogFragment {
+  private static UtilService utilService;
+  private static String userId;
   private final Context context;
   private final TaskModel taskModel;
-  private static UtilService utilService;
+  SharedPreferenceClass sharedPreferenceClass;
+  HashMap<String, Integer> prio = new HashMap<String, Integer>();
   private EditText taskDes, taskNote;
   private TextView taskDate, taskDeadline, taskCategory, taskTag;
   private ImageView category, tags, notes, taskRemind, taskRepeat, submit, taskPriority;
-  private static String userId;
-  SharedPreferenceClass sharedPreferenceClass;
   private TaskNetwork taskNetwork;
   private String taskValue = "Low";
-  HashMap<String, Integer> prio = new HashMap<String, Integer>();
   
   public TaskUpdateFrag(Context context, TaskModel taskModel) {
     this.context = context;

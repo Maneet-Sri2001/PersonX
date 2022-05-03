@@ -10,12 +10,12 @@
 
     <ImageView
         android:id="@+id/todo_radio_button"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="5dp"
         android:padding="@dimen/dimen_0"
-        android:src="@drawable/delete"
+        android:src="@drawable/ic_task_done"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
         android:fontFamily="@font/poppins"
-        app:chipIcon="@drawable/ic_baseline_today_24"
+        app:chipIcon="@drawable/ic_calender"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/todo_radio_button" />
 

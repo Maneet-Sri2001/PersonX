@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,13 +17,16 @@ import com.collegeproject.personx.Adaptor.OnTaskClickListener;
 import com.collegeproject.personx.Adaptor.RecyclerViewAdaptor;
 import com.collegeproject.personx.Model.TaskModel;
 import com.collegeproject.personx.R;
-import com.collegeproject.personx.Utils.TaskCreateFrag;
 import com.collegeproject.personx.Utils.TaskUpdateFrag;
 import com.collegeproject.personx.ViewModel.TaskViewModel;
+import com.google.android.material.bottomappbar.BottomAppBar;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class HomePageFrag extends Fragment implements OnTaskClickListener {
   TaskViewModel taskViewModel;
   public RecyclerView recyclerView;
+  private BottomAppBar bottomNavigationView;
+  private FloatingActionButton floatingActionButton;
   public RecyclerViewAdaptor recyclerViewAdapter;
   public Context context;
   
@@ -34,6 +36,8 @@ public class HomePageFrag extends Fragment implements OnTaskClickListener {
     View view = inflater.inflate(R.layout.fragment_home_page, container, false);
     context = view.getContext();
     recyclerView = view.findViewById(R.id.task_recycler);
+    bottomNavigationView = getActivity().findViewById(R.id.bottomAppBar);
+    floatingActionButton = getActivity().findViewById(R.id.fab);
     
     taskViewModel = new ViewModelProvider.AndroidViewModelFactory(requireActivity().getApplication())
         .create(TaskViewModel.class);
@@ -45,6 +49,26 @@ public class HomePageFrag extends Fragment implements OnTaskClickListener {
     super.onViewCreated(view, savedInstanceState);
     recyclerView.setHasFixedSize(true);
     recyclerView.setLayoutManager(new LinearLayoutManager(context));
+    
+    recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+      @Override
+      public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+        super.onScrollStateChanged(recyclerView, newState);
+      }
+      
+      @Override
+      public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+        super.onScrolled(recyclerView, dx, dy);
+        if (dy > 0 && bottomNavigationView.isShown()) {
+          bottomNavigationView.setVisibility(View.GONE);
+          floatingActionButton.setVisibility(View.GONE);
+        } else if (dy < 0) {
+          bottomNavigationView.setVisibility(View.VISIBLE);
+          floatingActionButton.setVisibility(View.VISIBLE);
+        }
+      }
+    });
+    
     taskViewModel.getAllTask().observe(getViewLifecycleOwner(), taskModals -> {
       recyclerViewAdapter = new RecyclerViewAdaptor(taskModals, this, getActivity());
       recyclerView.setAdapter(recyclerViewAdapter);

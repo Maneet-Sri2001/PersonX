@@ -1,27 +1,26 @@
 package com.collegeproject.personx;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+
 import com.collegeproject.personx.Database.DAO.UserDAO;
 import com.collegeproject.personx.Database.UserDatabase;
-import com.collegeproject.personx.Utils.TaskCreateFrag;
 import com.collegeproject.personx.Fragments.HomePageFrag;
 import com.collegeproject.personx.Fragments.SettingPageFrag;
 import com.collegeproject.personx.NetworkFile.CheckInternet;
 import com.collegeproject.personx.NetworkFile.UserNetwork;
 import com.collegeproject.personx.Utils.SharedPreferenceClass;
+import com.collegeproject.personx.Utils.TaskCreateFrag;
 import com.collegeproject.personx.Utils.UtilService;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.uk.tastytoasty.TastyToasty;
 
 public class MainActivity extends AppCompatActivity {
   
@@ -41,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     utilService = new UtilService();
     bottomNavigationView = findViewById(R.id.bottomNavigationView);
     floatingActionButton = findViewById(R.id.fab);
-  
+    
     bottomNavigationView.setBackground(null);
     bottomNavigationView.getMenu().getItem(2).isEnabled();
     defaultFragment(new HomePageFrag());
@@ -60,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         return defaultFragment(fragment);
       }
     });
-  
+    
     floatingActionButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
@@ -68,10 +67,10 @@ public class MainActivity extends AppCompatActivity {
         taskCreateFrag.show(getSupportFragmentManager(), taskCreateFrag.getTag());
       }
     });
-  
     
     
   }
+  
   private boolean defaultFragment(Fragment fragment) {
     if (fragment != null) {
       getSupportFragmentManager()
@@ -87,13 +86,13 @@ public class MainActivity extends AppCompatActivity {
   protected void onStart() {
     super.onStart();
     SharedPreferenceClass sharedPreferenceClass = new SharedPreferenceClass(context);
-    if(CheckInternet.isConnected(context)) {
+    if (CheckInternet.isConnected(context)) {
       try {
         UserNetwork.getUserData(sharedPreferenceClass.getValueString("token"), context);
       } catch (Exception e) {
-        utilService.showSnackBar(getWindow().getDecorView().getRootView(), e.getMessage());
+        TastyToasty.violet(context, e.getMessage(), null).show();
       }
-    }  else
-      utilService.showSnackBar(getWindow().getDecorView().getRootView(), "No Internet Connection");
+    } else
+      TastyToasty.violet(context, "No Internet Connection", null).show();
   }
 }

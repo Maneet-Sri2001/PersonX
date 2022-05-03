@@ -9,8 +9,7 @@
     <FrameLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="40dp" />
+        android:layout_height="match_parent" />
 
 
     <com.google.android.material.bottomappbar.BottomAppBar
@@ -20,7 +19,7 @@
         android:layout_gravity="bottom"
         app:contentInsetEnd="10dp"
         app:contentInsetStart="10dp"
-        app:fabAlignmentMode="center"
+        app:fabAlignmentMode="end"
         app:fabCradleMargin="12dp"
         app:fabCradleRoundedCornerRadius="30dp">
 
@@ -38,9 +37,7 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#0F9D58"
-        android:contentDescription="@string/app_name"
-        android:src="@drawable/ic_add"
+        android:src="@drawable/ic_add_task"
         app:layout_anchor="@id/bottomAppBar" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

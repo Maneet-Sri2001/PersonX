@@ -34,6 +34,7 @@ import com.android.volley.toolbox.Volley;
 import com.collegeproject.personx.R;
 import com.collegeproject.personx.Utils.SharedPreferenceClass;
 import com.collegeproject.personx.Utils.UtilService;
+import com.uk.tastytoasty.TastyToasty;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -143,13 +144,11 @@ public class SignUpUserFrag extends Fragment {
                 apiUrl, new JSONObject(body), response -> {
               try {
                 if (response.getBoolean("success")) {
-                  utilService.showSnackBar(getView(), response.getString("message"));
                   setFragment(new LogInUserFrag());
                 }
-                
+                TastyToasty.indigo(getContext(), response.getString("message"), null).show();
               } catch (Exception e) {
                 e.printStackTrace();
-                //prog invi
                 progressBar.setVisibility(View.GONE);
               }
             }, error -> {
@@ -158,7 +157,7 @@ public class SignUpUserFrag extends Fragment {
                 try {
                   String res = new String(response.data, HttpHeaderParser.parseCharset(response.headers, "utf-8"));
                   JSONObject obj = new JSONObject(res);
-                  Toast.makeText(getActivity(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+                  TastyToasty.error(getContext(), obj.getString("message")).show();
                   progressBar.setVisibility(View.GONE);
                 } catch (JSONException | UnsupportedEncodingException je) {
                   je.printStackTrace();
@@ -186,22 +185,22 @@ public class SignUpUserFrag extends Fragment {
           } else {
             progressBar.setVisibility(View.GONE);
             registerView.setVisibility(View.VISIBLE);
-            utilService.showSnackBar(getView(), "Password Does not matched");
+            TastyToasty.yellow(getContext(), "Password Does not matched", null).show();
           }
         } else {
           progressBar.setVisibility(View.GONE);
           registerView.setVisibility(View.VISIBLE);
-          utilService.showSnackBar(getView(), "Please Enter Valid Password");
+          TastyToasty.yellow(getContext(), "Please Enter Valid Password", null).show();
         }
       } else {
         progressBar.setVisibility(View.GONE);
         registerView.setVisibility(View.VISIBLE);
-        utilService.showSnackBar(getView(), "Please Enter Valid Email");
+        TastyToasty.yellow(getContext(), "Please Enter Valid Email", null).show();
       }
     } else {
       progressBar.setVisibility(View.GONE);
       registerView.setVisibility(View.VISIBLE);
-      utilService.showSnackBar(getView(), "Please Agree TnC.");
+      TastyToasty.yellow(getContext(), "Please Agree TnC.", null).show();
     }
   }
   

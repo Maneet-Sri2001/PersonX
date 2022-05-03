@@ -14,7 +14,7 @@ public class SharedPreferenceClass {
     this.sharedPreferencesEditor = sharedPreferences.edit();
   }
   
-  public void setValueInt(String key, int value){
+  public void setValueInt(String key, int value) {
     sharedPreferencesEditor.putInt(key, value).commit();
   }
   
@@ -22,7 +22,7 @@ public class SharedPreferenceClass {
     return sharedPreferences.getInt(key, 0);
   }
   
-  public void setValueString(String key, String value){
+  public void setValueString(String key, String value) {
     sharedPreferencesEditor.putString(key, value).commit();
   }
   
@@ -30,7 +30,7 @@ public class SharedPreferenceClass {
     return sharedPreferences.getString(key, "");
   }
   
-  public void setValueBoolean(String key, Boolean value){
+  public void setValueBoolean(String key, Boolean value) {
     sharedPreferencesEditor.putBoolean(key, value).commit();
   }
   
