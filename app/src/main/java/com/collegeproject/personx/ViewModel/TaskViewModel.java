@@ -20,6 +20,7 @@ public class TaskViewModel extends AndroidViewModel {
     taskRepository = new TaskRepository(application);
     this.allTask = taskRepository.getAllTask();
   }
+  
   public static void insert(TaskModel task) {
     taskRepository.insert(task);
   }
@@ -36,8 +37,12 @@ public class TaskViewModel extends AndroidViewModel {
     taskRepository.deleteAll();
   }
   
-  public LiveData<TaskModel> get(String id) {
+  public LiveData<TaskModel> getSingle(String id) {
     return taskRepository.getTask(id);
+  }
+  
+  public LiveData<List<TaskModel>> getCategory(String category) {
+    return taskRepository.getTaskCategory(category);
   }
   
   public LiveData<List<TaskModel>> getAllTask() {

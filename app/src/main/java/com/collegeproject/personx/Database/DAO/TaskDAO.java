@@ -30,4 +30,7 @@ public interface TaskDAO {
   
   @Query("SELECT * FROM taskTable WHERE taskTable._id == :id")
   LiveData<TaskModel> getSingle(String id);
+  
+  @Query("SELECT * FROM taskTable WHERE taskTable.category == :category")
+  LiveData<List<TaskModel>> getCategory(String category);
 }

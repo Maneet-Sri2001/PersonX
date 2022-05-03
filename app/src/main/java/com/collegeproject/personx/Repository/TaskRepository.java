@@ -45,6 +45,10 @@ public class TaskRepository {
     return taskDAO.getSingle(id);
   }
   
+  public LiveData<List<TaskModel>> getTaskCategory(String category) {
+    return taskDAO.getCategory(category);
+  }
+  
   //Async Task Insert
   private static class InsertTaskAsync extends AsyncTask<TaskModel, Void, Void> {
     private final TaskDAO taskDAO;
