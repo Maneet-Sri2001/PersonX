@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <EditText
+            android:id="@+id/task_des"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@null"
+            android:hint="I'm going to..."
+            android:padding="3dp"
+            android:singleLine="true"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/task_note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="3dp"
+            android:background="@null"
+            android:hint="Task Notes"
+            android:padding="5dp"
+            android:textSize="18sp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="3dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/task_cat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableStart="@drawable/ic_category"
+                android:drawableTint="#228B22"
+                android:padding="3dp"
+                android:textSize="16sp"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/task_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="-3dp"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="Tags goes here..."
+                android:padding="3dp"
+                android:singleLine="true"
+                android:textSize="14sp"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="2dp">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:src="@drawable/ic_calender" />
+
+            <TextView
+                android:id="@+id/task_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:gravity="center_vertical"
+                android:inputType="date"
+                android:text="Start"
+                android:textSize="16sp"
+                tools:ignore="TextViewEdits" />
+
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:layout_margin="5dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_arrow" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:src="@drawable/ic_calender" />
+
+            <TextView
+                android:id="@+id/task_deadline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:gravity="center_vertical"
+                android:inputType="date"
+                android:text="End"
+                android:textSize="16sp"
+                tools:ignore="TextViewEdits" />
+
+            <ImageView
+                android:id="@+id/task_remind"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="15dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_alert_off" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="6dp">
+
+            <ImageView
+                android:id="@+id/task_show_note"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_margin="5dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:cropToPadding="true"
+                android:longClickable="true"
+                android:padding="3dp"
+                android:src="@drawable/ic_note" />
+
+            <ImageView
+                android:id="@+id/task_category"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_margin="5dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:cropToPadding="true"
+                android:longClickable="true"
+                android:padding="3dp"
+                android:src="@drawable/ic_category" />
+
+            <ImageView
+                android:id="@+id/tag"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_margin="5dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:cropToPadding="true"
+                android:longClickable="true"
+                android:padding="3dp"
+                android:src="@drawable/ic_tag"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/task_priority"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_margin="5dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:cropToPadding="true"
+                android:longClickable="true"
+                android:padding="3dp"
+                android:src="@drawable/ic_flag" />
+
+            <ImageView
+                android:id="@+id/task_repeat"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_margin="5dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:cropToPadding="true"
+                android:longClickable="true"
+                android:padding="3dp"
+                android:src="@drawable/ic_repeat" />
+
+            <ImageView
+                android:id="@+id/task_save"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:cropToPadding="true"
+                android:longClickable="true"
+                android:src="@drawable/ic_complete" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

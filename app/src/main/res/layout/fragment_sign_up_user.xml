@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.SignUpUserFrag">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:src="@drawable/reg" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="@string/create_new_account"
+                    android:textAlignment="center"
+                    android:textColor="@color/Black"
+                    android:textSize="28sp" />
+
+                <!--        <TextView-->
+                <!--            android:layout_width="wrap_content"-->
+                <!--            android:layout_height="wrap_content"-->
+                <!--            android:text="Already Registered? "-->
+                <!--            android:textColor="@color/Black"-->
+                <!--            android:fontFamily="@font/poppins"-->
+                <!--            android:layout_marginLeft="30dp"-->
+                <!--            android:textAlignment="center"-->
+                <!--            android:textSize="14sp"/>-->
+
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/register_progress_bar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="30dp"
+                android:indeterminate="true"
+                android:indeterminateDrawable="@drawable/progress_bar_layout"
+                android:outlineAmbientShadowColor="@color/black"
+                android:padding="25dp"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/register_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/fullName"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/edittextbg"
+                    android:fontFamily="@font/poppins"
+                    android:hint="@string/full_name"
+                    android:inputType="text"
+                    android:paddingStart="8dp"
+                    android:singleLine="true" />
+
+                <EditText
+                    android:id="@+id/registerMail"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="@dimen/dimen_10"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/edittextbg"
+                    android:fontFamily="@font/poppins"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:paddingStart="8dp"
+                    android:singleLine="true" />
+
+                <EditText
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="@dimen/dimen_10"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/edittextbg"
+                    android:fontFamily="@font/poppins"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:paddingStart="8dp"
+                    android:singleLine="true" />
+
+                <EditText
+                    android:id="@+id/confirmPwd"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="@dimen/dimen_10"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/edittextbg"
+                    android:fontFamily="@font/poppins"
+                    android:hint="@string/confirm_password"
+                    android:inputType="textPassword"
+                    android:paddingStart="8dp"
+                    android:singleLine="true" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="@dimen/dimen_10"
+                    android:layout_marginRight="20dp"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/checkbox"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="4dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:fontFamily="@font/poppins"
+                        android:text="@string/by_continuing_you_agree_with_our_term_and_conditions_and_privacy_policy"
+                        android:textColor="@color/Black"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/register"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="@dimen/dimen_10"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="@dimen/dimen_10"
+                    android:background="@drawable/edittextbg"
+                    android:backgroundTint="@color/purple_500"
+                    android:enabled="false"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="@string/sign_up"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="@font/poppins"
+                    android:text="@string/already_registered"
+                    android:textColor="@color/Black"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/register_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="25dp"
+                    android:fontFamily="@font/poppins"
+                    android:text="@string/login"
+                    android:textColor="@color/purple_500"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

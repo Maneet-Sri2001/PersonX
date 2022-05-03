@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/high"
+        android:icon="@drawable/ic_priority_high"
+        android:title="High"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/medium"
+        android:icon="@drawable/ic_priority_medium"
+        android:title="Medium"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/low"
+        android:icon="@drawable/ic_priority_low"
+        android:title="Low"
+        app:showAsAction="always" />
+
+</menu>
