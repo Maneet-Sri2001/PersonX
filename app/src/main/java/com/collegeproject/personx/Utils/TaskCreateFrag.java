@@ -10,7 +10,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -21,14 +20,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.collegeproject.personx.Model.TaskModel;
+import com.collegeproject.personx.NetworkFile.TaskNetwork;
 import com.collegeproject.personx.R;
-import com.collegeproject.personx.Utils.SharedPreferenceClass;
-import com.collegeproject.personx.Utils.UtilService;
-import com.collegeproject.personx.ViewModel.TaskViewModel;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.util.HashMap;
+import java.util.Locale;
 
 public class TaskCreateFrag extends BottomSheetDialogFragment {
   private Context context;
@@ -37,7 +35,11 @@ public class TaskCreateFrag extends BottomSheetDialogFragment {
   private TextView taskDate, taskDeadline, taskCategory, taskTag;
   private ImageView category, tags, notes, taskRemind, taskRepeat, submit, taskPriority;
   private static String userId;
-  SharedPreferenceClass sharedPreferenceClass;
+  private SharedPreferenceClass sharedPreferenceClass;
+  private TaskNetwork taskNetwork;
+  
+  private String taskValue = "Low";
+  
   
   public TaskCreateFrag() {
     // Required empty public constructor
@@ -51,6 +53,7 @@ public class TaskCreateFrag extends BottomSheetDialogFragment {
     sharedPreferenceClass = new SharedPreferenceClass(getActivity().getApplicationContext());
     context = getContext();
     userId = sharedPreferenceClass.getValueString("token");
+    taskNetwork = new TaskNetwork(userId, context, getView());
     
     taskDes = view.findViewById(R.id.task_des);
     taskNote = view.findViewById(R.id.task_note);
@@ -66,6 +69,7 @@ public class TaskCreateFrag extends BottomSheetDialogFragment {
     tags = view.findViewById(R.id.tag);
     notes = view.findViewById(R.id.task_show_note);
     submit = view.findViewById(R.id.task_save);
+    
     return view;
   }
   
@@ -127,6 +131,7 @@ public class TaskCreateFrag extends BottomSheetDialogFragment {
           @Override
           public boolean onMenuItemClick(MenuItem menuItem) {
             taskPriority.setImageDrawable(menuItem.getIcon());
+            taskValue = menuItem.getTitle().toString().toUpperCase(Locale.ROOT);
             return false;
           }
         });
@@ -188,28 +193,12 @@ public class TaskCreateFrag extends BottomSheetDialogFragment {
       String task = taskDes.getText().toString().trim();
       if (!TextUtils.isEmpty(task) && taskDate != null) {
         TaskModel myTask = new TaskModel("000", task, "Uncompleted", taskCategory.getText().toString(), taskTag.getText().toString(),
-            taskDate.getText().toString(), taskNote.getText().toString(), "High", taskDate.getText().toString(),
+            taskDate.getText().toString(), taskNote.getText().toString(), taskValue, taskDate.getText().toString(),
             taskDate.getText().toString(), taskRepeat.toString(), "type");
-        TaskViewModel.insert(myTask);
-        //addTask(myTask, getContext(), view);
-
-//        if (isEdit) {
-//          TaskModel updateTask = sharedViewedModel.getSelectedItem().getValue();
-//          updateTask.setTaskDes(task);
-//          //updateTask.setDate();
-//          //updateTask.setPriority(priority.toString());
-//          updateTask.setDeadline(taskDeadline.getText().toString());
-//          //TaskViewModel.update(updateTask);
-//          sharedViewedModel.setIsEdit(false);
-//        } else {
-//          //TaskViewModel.insert(myTask);
-//        }
-        taskDes.setText("");
-        if (this.isVisible()) {
-          this.dismiss();
-        }
+        taskNetwork.addTask(myTask);
+        dismiss();
       } else {
-        Snackbar.make(submit, "Empty Field", Snackbar.LENGTH_LONG)
+        Snackbar.make(getView(), "Empty Field", Snackbar.LENGTH_LONG)
             .show();
       }
     });

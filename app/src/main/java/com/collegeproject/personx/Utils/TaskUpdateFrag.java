@@ -20,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.collegeproject.personx.Model.TaskModel;
+import com.collegeproject.personx.NetworkFile.TaskNetwork;
 import com.collegeproject.personx.R;
 import com.collegeproject.personx.ViewModel.TaskViewModel;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
@@ -37,6 +38,8 @@ public class TaskUpdateFrag extends BottomSheetDialogFragment {
   private ImageView category, tags, notes, taskRemind, taskRepeat, submit, taskPriority;
   private static String userId;
   SharedPreferenceClass sharedPreferenceClass;
+  private TaskNetwork taskNetwork;
+  private String taskValue = "Low";
   HashMap<String, Integer> prio = new HashMap<String, Integer>();
   
   public TaskUpdateFrag(Context context, TaskModel taskModel) {
@@ -51,6 +54,7 @@ public class TaskUpdateFrag extends BottomSheetDialogFragment {
     utilService = new UtilService();
     sharedPreferenceClass = new SharedPreferenceClass(getActivity().getApplicationContext());
     userId = sharedPreferenceClass.getValueString("token");
+    taskNetwork = new TaskNetwork(userId, context, getView());
     
     taskDes = view.findViewById(R.id.task_des);
     taskNote = view.findViewById(R.id.task_note);
@@ -144,6 +148,7 @@ public class TaskUpdateFrag extends BottomSheetDialogFragment {
           @Override
           public boolean onMenuItemClick(MenuItem menuItem) {
             taskPriority.setImageDrawable(menuItem.getIcon());
+            taskValue = menuItem.getTitle().toString().toUpperCase(Locale.ROOT);
             return false;
           }
         });
@@ -204,13 +209,11 @@ public class TaskUpdateFrag extends BottomSheetDialogFragment {
     submit.setOnClickListener(view1 -> {
       String task = taskDes.getText().toString().trim();
       if (!TextUtils.isEmpty(task) && taskDate != null) {
-        TaskModel myTask = new TaskModel(taskModel.get_id(), task, "Uncompleted", taskCategory.getText().toString(), taskTag.getText().toString(),
-            taskDate.getText().toString(), taskNote.getText().toString(), "High", taskDate.getText().toString(),
-            taskDate.getText().toString(), taskRepeat.toString(), "type");
-        TaskViewModel.update(myTask);
-        if (this.isVisible()) {
-          this.dismiss();
-        }
+        TaskModel myTask = new TaskModel(taskModel.get_id(), task, taskModel.getStatus(), taskCategory.getText().toString(), taskTag.getText().toString(),
+            taskDate.getText().toString(), taskNote.getText().toString(), taskValue, taskDate.getText().toString(),
+            taskDate.getText().toString(), taskRepeat.toString(), taskModel.getReminderType());
+        taskNetwork.updateTask(myTask);
+        dismiss();
       } else {
         Snackbar.make(submit, "Empty Field", Snackbar.LENGTH_LONG)
             .show();

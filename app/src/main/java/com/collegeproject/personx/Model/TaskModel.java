@@ -7,10 +7,10 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "taskTable")
 public class TaskModel {
-  @ColumnInfo(name = "_id")
-  String _id;
   @PrimaryKey(autoGenerate = false)
   @NonNull
+  @ColumnInfo(name = "_id")
+  String _id;
   @ColumnInfo(name = "taskDes")
   String taskDes;
   @ColumnInfo(name = "status")
