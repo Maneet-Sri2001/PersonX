@@ -29,6 +29,10 @@ public class TaskRepository {
     new UpdateTaskAsync(taskDAO).execute(taskModal);
   }
   
+  public void completeTask(TaskModel taskModal) {
+    new CompleteTaskAsync(taskDAO).execute(taskModal);
+  }
+  
   public void delete(TaskModel taskModal) {
     new DeleteTaskAsync(taskDAO).execute(taskModal);
   }
@@ -75,6 +79,21 @@ public class TaskRepository {
     @Override
     protected Void doInBackground(TaskModel... taskModals) {
       taskDAO.update(taskModals[0]);
+      return null;
+    }
+  }
+  
+  //Async Task TaskComplete
+  private static class CompleteTaskAsync extends AsyncTask<TaskModel, Void, Void> {
+    private final TaskDAO taskDAO;
+    
+    public CompleteTaskAsync(TaskDAO taskDAO) {
+      this.taskDAO = taskDAO;
+    }
+    
+    @Override
+    protected Void doInBackground(TaskModel... taskModals) {
+      taskDAO.updateTask(taskModals[0].get_id());
       return null;
     }
   }

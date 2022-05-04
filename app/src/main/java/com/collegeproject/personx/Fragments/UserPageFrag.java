@@ -22,15 +22,14 @@ public class UserPageFrag extends Fragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_user_page, container, false);
-    goBack = view.findViewById(R.id.login_acc_for_pass);
-    parentFrame = getActivity().findViewById(R.id.frame_layout_register);
+    
     return view;
   }
   
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    goBack.setOnClickListener(v -> setFragment(new LogInUserFrag()));
+//    goBack.setOnClickListener(v -> setFragment(new LogInUserFrag()));
   }
   
   private void setFragment(Fragment logInFragment) {

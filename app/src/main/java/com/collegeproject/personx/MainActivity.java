@@ -13,6 +13,7 @@ import com.collegeproject.personx.Database.DAO.UserDAO;
 import com.collegeproject.personx.Database.UserDatabase;
 import com.collegeproject.personx.Fragments.HomePageFrag;
 import com.collegeproject.personx.Fragments.SettingPageFrag;
+import com.collegeproject.personx.Fragments.UserPageFrag;
 import com.collegeproject.personx.NetworkFile.CheckInternet;
 import com.collegeproject.personx.NetworkFile.UserNetwork;
 import com.collegeproject.personx.Utils.SharedPreferenceClass;
@@ -51,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
           case R.id.home:
             fragment = new HomePageFrag();
+            break;
+          case R.id.user_profile:
+            fragment = new UserPageFrag();
             break;
           case R.id.setting:
             fragment = new SettingPageFrag();
