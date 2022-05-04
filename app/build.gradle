@@ -53,4 +53,13 @@ dependencies {
 
     //Custom Toast
     implementation 'com.github.usman18:TastyToasty:v1.2'
+
+    //Easy Permission
+    implementation 'pub.devrel:easypermissions:3.0.0'
+
+    //Graph Dependency
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+    implementation 'com.github.bumptech.glide:glide:4.13.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
 }
