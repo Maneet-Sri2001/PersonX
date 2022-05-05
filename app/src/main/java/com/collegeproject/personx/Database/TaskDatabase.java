@@ -25,6 +25,7 @@ public abstract class TaskDatabase extends RoomDatabase {
     }
     return instance;
   }
+  
   public static final RoomDatabase.Callback roomCallBack = new RoomDatabase.Callback() {
     
     @Override
@@ -32,5 +33,6 @@ public abstract class TaskDatabase extends RoomDatabase {
       super.onCreate(db);
     }
   };
+  
   public abstract TaskDAO taskDao();
 }

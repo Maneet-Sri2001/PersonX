@@ -1,49 +1,76 @@
 package com.collegeproject.personx.Model;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "newsTable")
 public class NewsModel {
-  String auth, name, tiltle, url, imgUrl, des, content, publishAt;
+  @PrimaryKey(autoGenerate = true)
+  @NonNull
+  int key;
+  @ColumnInfo
+  String sourceName;
+  @ColumnInfo
+  String author;
+  @ColumnInfo
+  String title;
+  @ColumnInfo
+  String description;
+  @ColumnInfo
+  String newsUrl;
+  @ColumnInfo
+  String imgUrl;
+  @ColumnInfo
+  String publishAt;
   
-  public NewsModel(String auth, String name, String tiltle, String url, String imgUrl, String des, String content, String publishAt) {
-    this.auth = auth;
-    this.name = name;
-    this.tiltle = tiltle;
-    this.url = url;
-    this.imgUrl = imgUrl;
-    this.des = des;
-    this.content = content;
-    this.publishAt = publishAt;
+  public int getKey() {
+    return key;
   }
   
-  public String getAuth() {
-    return auth;
+  public void setKey(int key) {
+    this.key = key;
   }
   
-  public void setAuth(String auth) {
-    this.auth = auth;
+  public String getSourceName() {
+    return sourceName;
   }
   
-  public String getName() {
-    return name;
+  public void setSourceName(String sourceName) {
+    this.sourceName = sourceName;
   }
   
-  public void setName(String name) {
-    this.name = name;
+  public String getAuthor() {
+    return author;
   }
   
-  public String getTiltle() {
-    return tiltle;
+  public void setAuthor(String author) {
+    this.author = author;
   }
   
-  public void setTiltle(String tiltle) {
-    this.tiltle = tiltle;
+  public String getTitle() {
+    return title;
   }
   
-  public String getUrl() {
-    return url;
+  public void setTitle(String title) {
+    this.title = title;
   }
   
-  public void setUrl(String url) {
-    this.url = url;
+  public String getDescription() {
+    return description;
+  }
+  
+  public void setDescription(String description) {
+    this.description = description;
+  }
+  
+  public String getNewsUrl() {
+    return newsUrl;
+  }
+  
+  public void setNewsUrl(String newsUrl) {
+    this.newsUrl = newsUrl;
   }
   
   public String getImgUrl() {
@@ -54,27 +81,21 @@ public class NewsModel {
     this.imgUrl = imgUrl;
   }
   
-  public String getDes() {
-    return des;
-  }
-  
-  public void setDes(String des) {
-    this.des = des;
-  }
-  
-  public String getContent() {
-    return content;
-  }
-  
-  public void setContent(String content) {
-    this.content = content;
-  }
-  
   public String getPublishAt() {
     return publishAt;
   }
   
   public void setPublishAt(String publishAt) {
+    this.publishAt = publishAt;
+  }
+  
+  public NewsModel(String sourceName, String author, String title, String description, String newsUrl, String imgUrl, String publishAt) {
+    this.sourceName = sourceName;
+    this.author = author;
+    this.title = title;
+    this.description = description;
+    this.newsUrl = newsUrl;
+    this.imgUrl = imgUrl;
     this.publishAt = publishAt;
   }
 }

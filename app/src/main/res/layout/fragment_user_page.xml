@@ -14,8 +14,8 @@
             android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
             android:layout_alignParentTop="true"
+            android:layout_margin="8dp"
             android:layout_marginStart="3dp"
             android:layout_marginEnd="3dp"
             app:cardCornerRadius="5dp"
@@ -409,20 +409,62 @@
 
         </androidx.cardview.widget.CardView>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/news_recycler"
+        <RelativeLayout
+            android:id="@+id/relative"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/cardView"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp" />
+            android:layout_below="@id/cardView">
+
+            <RelativeLayout
+                android:id="@+id/tophead"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="20dp"
+                    android:text="Top Headline"
+                    android:textSize="22sp" />
+
+                <ImageView
+                    android:id="@+id/get_news"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="20dp"
+                    android:layout_toStartOf="@id/hide_news"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_repeat" />
+
+                <ImageView
+                    android:id="@+id/hide_news"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="20dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_disabled_visible" />
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/news_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tophead"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp" />
+        </RelativeLayout>
+
 
         <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/piechart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/piechart"
-            android:layout_below="@id/news_recycler"/>
+            android:layout_below="@id/relative" />
 
     </RelativeLayout>
 </ScrollView>

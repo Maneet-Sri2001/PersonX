@@ -143,7 +143,7 @@ public class LogInUserFrag extends Fragment {
                 TastyToasty.success(getContext(), response.getString("message")).show();
                 sharedPreferenceClass.setValueString("token", token);
                 startActivity(new Intent(getActivity(), MainActivity.class));
-                ///getActivity().finish();
+                getActivity().finish();
               }
               progressBar.setVisibility(View.GONE);
             } catch (Exception e) {

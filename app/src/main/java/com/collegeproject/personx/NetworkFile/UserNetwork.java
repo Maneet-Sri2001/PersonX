@@ -9,15 +9,25 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.collegeproject.personx.Model.NewsModel;
 import com.collegeproject.personx.Model.TaskModel;
 import com.collegeproject.personx.Model.UserModel;
+import com.collegeproject.personx.ViewModel.NewsViewModel;
 import com.collegeproject.personx.ViewModel.TaskViewModel;
+import com.kwabenaberko.newsapilib.NewsApiClient;
+import com.kwabenaberko.newsapilib.models.Article;
+import com.kwabenaberko.newsapilib.models.request.TopHeadlinesRequest;
+import com.kwabenaberko.newsapilib.models.response.ArticleResponse;
+import com.uk.tastytoasty.TastyToasty;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class UserNetwork {
+  
+  static NewsApiClient newsApiClient = new NewsApiClient("47cd26ff5d6c4c0e9bcb0a4890a4152b");
+  
   public static void getUserData(String userID, Context context) throws Exception {
     try {
       String apiUrl = "https://personx.herokuapp.com/user/" + userID.trim();
@@ -74,5 +84,33 @@ public class UserNetwork {
     } catch (Exception e) {
       Toast.makeText(context.getApplicationContext(), "Error : " + e.getMessage(), Toast.LENGTH_SHORT).show();
     }
+  }
+  
+  public static void getNews(Context context) {
+    newsApiClient.getTopHeadlines(
+        new TopHeadlinesRequest.Builder()
+            .country("in")
+            .build(), new NewsApiClient.ArticlesResponseCallback() {
+          @Override
+          public void onSuccess(ArticleResponse articleResponse) {
+            for (Article newsObj : articleResponse.getArticles()) {
+              String name = newsObj.getSource().getName(),
+                  author = newsObj.getAuthor(),
+                  title = newsObj.getTitle(),
+                  descrip = newsObj.getDescription(),
+                  url = newsObj.getUrl(),
+                  imgUrl = newsObj.getUrlToImage(),
+                  publish = newsObj.getPublishedAt();
+              NewsModel newsModel = new NewsModel(name, author, title, descrip, url, imgUrl, publish);
+              NewsViewModel.insert(newsModel);
+            }
+          }
+          
+          @Override
+          public void onFailure(Throwable throwable) {
+            TastyToasty.error(context, throwable.getMessage()).show();
+          }
+        }
+    );
   }
 }
