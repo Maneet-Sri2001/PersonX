@@ -14,7 +14,8 @@
         android:layout_height="45dp"
         android:layout_gravity="end"
         android:gravity="center"
-        android:text="X"
+        android:text="Close"
+        android:layout_marginRight="10dp"
         android:textColor="@color/black"
         android:textStyle="bold" />
 
@@ -54,7 +55,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="5dp"
-            app:cardBackgroundColor="@color/white"
+            app:cardBackgroundColor="#58C2C9"
             app:cardCornerRadius="10dp"
             app:cardElevation="5dp">
 
@@ -62,11 +63,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
+                android:background="@drawable/back_gradient"
                 android:padding="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="2"
                     android:drawableLeft="@drawable/date"
                     android:drawablePadding="8dp"
                     android:fontFamily="@font/poppins"
@@ -79,7 +82,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="8:00AM"
-                    android:layout_marginLeft="100dp"
                     android:textColor="#585858"
                     android:textSize="18sp" />
 
@@ -98,7 +100,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="5dp"
-            app:cardBackgroundColor="@color/white"
+            app:cardBackgroundColor="#58C2C9"
             app:cardCornerRadius="10dp"
             app:cardElevation="5dp">
 
@@ -106,11 +108,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
+                android:background="@drawable/back_gradient"
                 android:padding="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="2"
                     android:drawableLeft="@drawable/date"
                     android:drawablePadding="8dp"
                     android:fontFamily="@font/poppins"
@@ -123,7 +127,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="8:00AM"
-                    android:layout_marginLeft="100dp"
                     android:textColor="#585858"
                     android:textSize="18sp" />
 
@@ -142,7 +145,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="5dp"
-            app:cardBackgroundColor="@color/white"
+            app:cardBackgroundColor="#58C2C9"
             app:cardCornerRadius="10dp"
             app:cardElevation="5dp">
 
@@ -150,11 +153,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
+                android:background="@drawable/back_gradient"
                 android:padding="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="2"
                     android:drawableLeft="@drawable/date"
                     android:drawablePadding="8dp"
                     android:fontFamily="@font/poppins"
@@ -167,7 +172,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="8:00AM"
-                    android:layout_marginLeft="100dp"
                     android:textColor="#585858"
                     android:textSize="18sp" />
 
@@ -186,7 +190,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="5dp"
-        app:cardBackgroundColor="@color/white"
+        app:cardBackgroundColor="#58C2C9"
         app:cardCornerRadius="10dp"
         app:cardElevation="5dp">
 
@@ -194,11 +198,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
+            android:background="@drawable/back_gradient"
             android:padding="20dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="2"
                 android:drawableLeft="@drawable/date"
                 android:drawablePadding="8dp"
                 android:fontFamily="@font/poppins"
@@ -211,7 +217,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="8:00AM"
-                android:layout_marginLeft="100dp"
                 android:textColor="#585858"
                 android:textSize="18sp" />
 
@@ -226,9 +231,10 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/buttobback"
         android:text="Confirm"
+        android:backgroundTint="#50C2C9"
         android:textColor="#585858" />
 
 </LinearLayout>

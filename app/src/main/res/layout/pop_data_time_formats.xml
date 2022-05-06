@@ -2,9 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="360dp"
-    android:layout_height="450dp"
+    android:layout_height="470dp"
     android:layout_gravity="center"
     android:background="#F0F0F0"
+    android:id="@+id/popdate"
     android:orientation="vertical">
 
 
@@ -14,7 +15,8 @@
         android:layout_height="45dp"
         android:layout_gravity="end"
         android:gravity="center"
-        android:text="X"
+        android:text="Close"
+        android:layout_marginRight="10dp"
         android:textColor="@color/black"
         android:textStyle="bold" />
 
@@ -55,7 +57,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="30dp"
-            app:cardBackgroundColor="@color/white"
+            app:cardBackgroundColor="#58C2C9"
             app:cardCornerRadius="10dp"
             app:cardElevation="5dp">
 
@@ -63,6 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
+                android:background="@drawable/back_gradient"
                 android:padding="20dp">
 
                 <TextView
@@ -102,7 +105,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="30dp"
-            app:cardBackgroundColor="@color/white"
+            app:cardBackgroundColor="#58C2C9"
             app:cardCornerRadius="10dp"
             app:cardElevation="5dp">
 
@@ -110,6 +113,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
+                android:background="@drawable/back_gradient"
                 android:padding="20dp">
 
                 <TextView
@@ -123,11 +127,12 @@
                     android:textSize="18sp" />
 
                 <TextView
+                    android:id="@+id/tvtime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
-                    android:text="DD/MM/YYYY"
+                    android:text="HH:MM:SS"
                     android:textColor="#585858"
                     android:textSize="20sp" />
 
@@ -139,7 +144,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/customButton3"
         android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="5dp"
         android:background="@drawable/buttobback"
