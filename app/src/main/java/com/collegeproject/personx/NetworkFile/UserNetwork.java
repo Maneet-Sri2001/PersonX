@@ -7,13 +7,16 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.collegeproject.personx.Model.NewsModel;
 import com.collegeproject.personx.Model.TaskModel;
 import com.collegeproject.personx.Model.UserModel;
+import com.collegeproject.personx.Model.WeatherModel;
 import com.collegeproject.personx.ViewModel.NewsViewModel;
 import com.collegeproject.personx.ViewModel.TaskViewModel;
+import com.collegeproject.personx.ViewModel.WeatherViewModel;
 import com.kwabenaberko.newsapilib.NewsApiClient;
 import com.kwabenaberko.newsapilib.models.Article;
 import com.kwabenaberko.newsapilib.models.request.TopHeadlinesRequest;
@@ -82,11 +85,12 @@ public class UserNetwork {
       RequestQueue requestQueue = Volley.newRequestQueue(context);
       requestQueue.add(request);
     } catch (Exception e) {
-      Toast.makeText(context.getApplicationContext(), "Error : " + e.getMessage(), Toast.LENGTH_SHORT).show();
+      TastyToasty.error(context.getApplicationContext(), "Error : " + e).show();
     }
   }
   
   public static void getNews(Context context) {
+    NewsViewModel.deleteAll();
     newsApiClient.getTopHeadlines(
         new TopHeadlinesRequest.Builder()
             .country("in")
@@ -112,5 +116,51 @@ public class UserNetwork {
           }
         }
     );
+  }
+  
+  public static void getWeather(Context context, String location) {
+    try {
+      String apiUrl = "https://api.weatherapi.com/v1/current.json?key=25e6784139754723ab7135730212711&q=" + location + "&aqi=yes";
+      JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, apiUrl, null, new Response.Listener<JSONObject>() {
+        @Override
+        public void onResponse(JSONObject response) {
+          try {
+            WeatherViewModel.delete();
+            String name = response.getJSONObject("location").getString("name") + ", "
+                + response.getJSONObject("location").getString("region") + "\n\t"
+                + response.getJSONObject("location").getString("country"),
+                temp = response.getJSONObject("current").getString("temp_c"),
+                icon = response.getJSONObject("current").getJSONObject("condition").getString("icon"),
+                cond = response.getJSONObject("current").getJSONObject("condition").getString("text"),
+                wind = response.getJSONObject("current").getString("wind_kph") + "km/h "
+                    + response.getJSONObject("current").getString("wind_degree") + "° "
+                    + response.getJSONObject("current").getString("wind_dir"),
+                pressure = response.getJSONObject("current").getString("pressure_mb"),
+                humi = response.getJSONObject("current").getString("humidity"),
+                visi = response.getJSONObject("current").getString("vis_km") + "km",
+                uv = response.getJSONObject("current").getString("uv"),
+                co = response.getJSONObject("current").getJSONObject("air_quality").getString("co"),
+                no2 = response.getJSONObject("current").getJSONObject("air_quality").getString("no2"),
+                o3 = response.getJSONObject("current").getJSONObject("air_quality").getString("o3"),
+                so2 = response.getJSONObject("current").getJSONObject("air_quality").getString("so2"),
+                pm = response.getJSONObject("current").getJSONObject("air_quality").getString("pm2_5");
+            WeatherModel weatherModel = new WeatherModel(name, temp, icon, cond, wind, pressure, humi, visi,
+                uv, co, no2, o3, so2, pm);
+            WeatherViewModel.insert(weatherModel);
+          } catch (JSONException e) {
+            TastyToasty.error(context, e.toString()).show();
+          }
+        }
+      }, new Response.ErrorListener() {
+        @Override
+        public void onErrorResponse(VolleyError error) {
+          TastyToasty.error(context, error.toString()).show();
+        }
+      });
+      RequestQueue requestQueue = Volley.newRequestQueue(context);
+      requestQueue.add(request);
+    } catch (Exception e) {
+      TastyToasty.error(context.getApplicationContext(), "Error : " + e).show();
+    }
   }
 }

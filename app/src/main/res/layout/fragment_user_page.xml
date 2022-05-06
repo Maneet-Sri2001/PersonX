@@ -16,6 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_margin="8dp"
+            android:padding="3dp"
             android:layout_marginStart="3dp"
             android:layout_marginEnd="3dp"
             app:cardCornerRadius="5dp"
@@ -26,71 +27,30 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
+                    android:layout_height="wrap_content">
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/city"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:orientation="horizontal">
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="20dp"
+                        android:text=""
+                        android:textSize="22sp"
+                        android:drawableStart="@drawable/ic_location_on"/>
 
-                        <TextView
-                            android:id="@+id/temperature"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=" - - °"
-                            android:textSize="70sp" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="C"
-                                android:textSize="38sp" />
-
-                            <TextView
-                                android:id="@+id/real_feel"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/day_night"
-                            android:layout_width="45dp"
-                            android:layout_height="60dp"
-                            android:src="@drawable/sun" />
-
-                        <TextView
-                            android:id="@+id/wea_con"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
+                    <ImageView
+                        android:id="@+id/get_weather"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="20dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/ic_repeat" />
+                </RelativeLayout>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -105,305 +65,321 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:layout_marginBottom="5dp"
-                        android:gravity="center"
                         android:orientation="horizontal"
-                        android:weightSum="4">
+                        android:weightSum="3">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="horizontal">
+                            android:gravity="end"
+                            android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="36dp"
-                                android:layout_height="40dp"
-                                android:src="@drawable/sunrise" />
+                                android:id="@+id/wea_icon"
+                                android:layout_gravity="center"
+                                android:cropToPadding="true"
+                                android:layout_width="45dp"
+                                android:layout_height="60dp"
+                                android:src="@drawable/sun" />
 
                             <TextView
-                                android:id="@+id/sunrise"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:id="@+id/wea_cond"
+                                android:gravity="center"
                                 android:layout_gravity="center"
-                                android:text="- -"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
 
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="2"
                             android:gravity="center"
                             android:orientation="horizontal">
 
-                            <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="40dp"
-                                android:src="@drawable/sunset" />
-
                             <TextView
-                                android:id="@+id/sunset"
+                                android:id="@+id/wea_temp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="- -"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
+                                android:text=" - -"
+                                android:textSize="70sp" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="C"
+                                    android:layout_gravity="bottom"
+                                    android:textSize="38sp" />
+
+                                <TextView
+                                    android:id="@+id/real_feel"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+
 
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="horizontal">
 
-                            <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="40dp"
-                                android:src="@drawable/moonrise" />
-
-                            <TextView
-                                android:id="@+id/moonrise"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="- -"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="40dp"
-                                android:src="@drawable/moonset" />
-
-                            <TextView
-                                android:id="@+id/moonset"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="- -"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
-                <LinearLayout
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="5dp"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginBottom="10dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="5dp">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
+                        android:layout_marginBottom="10dp"
                         android:orientation="vertical">
 
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="40dp"
-                            android:src="@drawable/humidity" />
+                        <RelativeLayout
+                            android:id="@+id/show_weather_cond"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-                        <TextView
-                            android:id="@+id/humidity"
-                            android:layout_width="wrap_content"
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="20dp"
+                                android:text="Weather Detail"
+                                android:textSize="22sp" />
+
+                            <ImageView
+                                android:id="@+id/hide_wea_det"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="20dp"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:src="@drawable/ic_disabled_visible" />
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:id="@+id/wea_det_1"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="- -"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="5dp"
+                            android:visibility="gone"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
 
-                        <TextView
-                            android:layout_width="wrap_content"
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="40dp"
+                                    android:src="@drawable/humidity" />
+
+                                <TextView
+                                    android:id="@+id/wea_humidity"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="- -"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="Humidity"
+                                    android:textSize="12sp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="40dp"
+                                    android:src="@drawable/visibility" />
+
+                                <TextView
+                                    android:id="@+id/wea_visibility"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="- -"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="Visibility"
+                                    android:textSize="12sp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="40dp"
+                                    android:src="@drawable/dew" />
+
+                                <TextView
+                                    android:id="@+id/wea_dew"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="- -"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="Dew"
+                                    android:textSize="12sp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/wea_det_2"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="Humidity"
-                            android:textSize="12sp" />
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="5dp"
+                            android:gravity="center"
+                            android:visibility="gone"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
 
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="40dp"
+                                    android:src="@drawable/windsign" />
+
+                                <TextView
+                                    android:id="@+id/wea_wind"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="- -"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="Wind"
+                                    android:textSize="12sp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="40dp"
+                                    android:src="@drawable/atmospheric" />
+
+                                <TextView
+                                    android:id="@+id/wea_air_pressure"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="- -"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="Air Pressure"
+                                    android:textSize="12sp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="40dp"
+                                    android:src="@drawable/ultraviolet" />
+
+                                <TextView
+                                    android:id="@+id/wea_uv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="- -"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="UV Index"
+                                    android:textSize="12sp" />
+
+                            </LinearLayout>
+                        </LinearLayout>
                     </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="40dp"
-                            android:src="@drawable/visibility" />
-
-                        <TextView
-                            android:id="@+id/visibility"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="- -"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="Visibility"
-                            android:textSize="12sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="40dp"
-                            android:src="@drawable/dew" />
-
-                        <TextView
-                            android:id="@+id/dew"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="- -"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="Dew"
-                            android:textSize="12sp" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="5dp"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="40dp"
-                            android:src="@drawable/windsign" />
-
-                        <TextView
-                            android:id="@+id/windspeed"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="- -"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="Wind"
-                            android:textSize="12sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="40dp"
-                            android:src="@drawable/atmospheric" />
-
-                        <TextView
-                            android:id="@+id/air_pressure"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="- -"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="Air Pressure"
-                            android:textSize="12sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="40dp"
-                            android:src="@drawable/ultraviolet" />
-
-                        <TextView
-                            android:id="@+id/uv_value"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="- -"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="UV Index"
-                            android:textSize="12sp" />
-
-                    </LinearLayout>
-                </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 
