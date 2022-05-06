@@ -29,7 +29,6 @@
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             app:itemIconSize="34dp"
-            app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
             app:menu="@menu/bottom_nav_menu" />
     </com.google.android.material.bottomappbar.BottomAppBar>
 
@@ -38,7 +37,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_add_task"
-        app:layout_anchor="@id/bottomAppBar"
-        android:contentDescription="TODO" />
+        app:layout_anchor="@id/bottomAppBar" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

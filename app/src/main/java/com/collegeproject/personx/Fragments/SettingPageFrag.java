@@ -68,20 +68,19 @@ public class SettingPageFrag extends Fragment {
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
-      @Override
-      public void onScrollChanged() {
-        int scrollY = scrollView.getScrollY(); // For ScrollView
-        if (scrollY > 200 && bottomNavigationView.isShown()) {
-          bottomNavigationView.setVisibility(View.GONE);
-          floatingActionButton.setVisibility(View.GONE);
-        } else if (scrollY < 200) {
-          bottomNavigationView.setVisibility(View.VISIBLE);
-          floatingActionButton.setVisibility(View.VISIBLE);
-        }
-        // DO SOMETHING WITH THE SCROLL COORDINATES
-      }
-    });
+//    scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+//      @Override
+//      public void onScrollChanged() {
+//        int scrollY = scrollView.getScrollY(); // For ScrollView
+//        if (scrollY > 200 && bottomNavigationView.isShown()) {
+//          bottomNavigationView.setVisibility(View.GONE);
+//          floatingActionButton.setVisibility(View.GONE);
+//        } else if (scrollY < 200) {
+//          bottomNavigationView.setVisibility(View.VISIBLE);
+//          floatingActionButton.setVisibility(View.VISIBLE);
+//        }
+//      }
+//    });
     datetimeF.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
