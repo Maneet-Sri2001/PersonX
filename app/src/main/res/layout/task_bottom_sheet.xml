@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -88,6 +89,7 @@
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
+                app:tint="@color/purple_200"
                 android:src="@drawable/ic_calender" />
 
             <TextView
@@ -108,6 +110,7 @@
                 android:layout_height="20dp"
                 android:layout_margin="5dp"
                 android:scaleType="fitXY"
+                app:tint="@color/teal_700"
                 android:src="@drawable/ic_arrow" />
 
             <ImageView
@@ -116,11 +119,13 @@
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
+                app:tint="@color/purple_200"
                 android:src="@drawable/ic_calender" />
 
             <TextView
                 android:id="@+id/task_deadline"
                 android:layout_width="wrap_content"
+
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="?attr/selectableItemBackgroundBorderless"
@@ -135,6 +140,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="15dp"
+                app:tint="@color/teal_700"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_alert_off" />
         </LinearLayout>
@@ -147,14 +153,15 @@
 
             <ImageView
                 android:id="@+id/task_show_note"
-                android:layout_width="35dp"
+                android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:layout_margin="5dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:cropToPadding="true"
                 android:longClickable="true"
                 android:padding="3dp"
-                android:src="@drawable/ic_note" />
+                android:src="@drawable/ic_note"
+                app:tint="@color/teal_700" />
 
             <ImageView
                 android:id="@+id/task_category"
@@ -165,6 +172,7 @@
                 android:cropToPadding="true"
                 android:longClickable="true"
                 android:padding="3dp"
+                app:tint="@color/teal_700"
                 android:src="@drawable/ic_category" />
 
             <ImageView
@@ -176,6 +184,7 @@
                 android:cropToPadding="true"
                 android:longClickable="true"
                 android:padding="3dp"
+                app:tint="@color/teal_700"
                 android:src="@drawable/ic_tag"
                 android:visibility="gone" />
 
@@ -187,6 +196,7 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:cropToPadding="true"
                 android:longClickable="true"
+                app:tint="@color/teal_700"
                 android:padding="3dp"
                 android:src="@drawable/ic_deadline" />
 
@@ -199,6 +209,7 @@
                 android:cropToPadding="true"
                 android:longClickable="true"
                 android:padding="3dp"
+                app:tint="@color/teal_700"
                 android:src="@drawable/ic_repeat" />
 
             <ImageView
@@ -209,6 +220,7 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:cropToPadding="true"
                 android:longClickable="true"
+                app:tint="@color/teal_200"
                 android:src="@drawable/ic_complete" />
         </LinearLayout>
     </LinearLayout>

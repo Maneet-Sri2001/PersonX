@@ -99,7 +99,7 @@ public class HomePageFrag extends Fragment implements OnTaskClickListener {
       }
     });
     new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
-            ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            ItemTouchHelper.RIGHT) {
       @Override
       public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
         TastyToasty.success(getContext(), "Check");

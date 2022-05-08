@@ -3,7 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/HP/Desktop/PersonX/app/src/main/res/drawable/ic_add_task.xml" value="0.21" />
         <entry key="..\:/Users/HP/Desktop/PersonX/app/src/main/res/layout/activity_main.xml" value="0.21203703703703702" />
         <entry key="..\:/Users/HP/Desktop/PersonX/app/src/main/res/layout/fragment_home_page.xml" value="0.21666666666666667" />
         <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2" />
@@ -53,13 +52,14 @@
         <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/layout/fragment_home_page.xml" value="0.1" />
         <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/layout/fragment_log_in_user.xml" value="0.33177083333333335" />
         <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/layout/fragment_setting_page.xml" value="0.33177083333333335" />
-        <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/layout/fragment_sign_up_user.xml" value="0.1" />
+        <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/layout/fragment_sign_up_user.xml" value="0.264" />
         <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/layout/fragment_user_page.xml" value="0.25" />
         <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/layout/fragment_verify_mail.xml" value="0.33177083333333335" />
         <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/layout/news.xml" value="0.33177083333333335" />
         <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/layout/news_dialog_popup.xml" value="0.33177083333333335" />
         <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/layout/on_board_slider.xml" value="0.33177083333333335" />
         <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/layout/pop_allday.xml" value="0.33177083333333335" />
+        <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/layout/pop_feedback.xml" value="0.33177083333333335" />
         <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/layout/single_news_recycler.xml" value="0.33177083333333335" />
         <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/layout/single_task.xml" value="0.33177083333333335" />
         <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/layout/task_bottom_sheet.xml" value="0.264" />
