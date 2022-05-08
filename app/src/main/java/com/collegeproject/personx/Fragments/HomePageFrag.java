@@ -51,13 +51,13 @@ public class HomePageFrag extends Fragment implements OnTaskClickListener {
     super.onViewCreated(view, savedInstanceState);
     recyclerView.setHasFixedSize(true);
     recyclerView.setLayoutManager(new LinearLayoutManager(context));
-    
+
     recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
       @Override
       public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
         super.onScrollStateChanged(recyclerView, newState);
       }
-      
+
       @Override
       public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
         super.onScrolled(recyclerView, dx, dy);
@@ -71,24 +71,39 @@ public class HomePageFrag extends Fragment implements OnTaskClickListener {
       }
     });
     new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
-        ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
       @Override
       public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
         TastyToasty.success(getContext(), "Check");
         return false;
       }
-      
+
       @Override
       public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
         TastyToasty.yellow(recyclerView.getContext(), "Item Swiped", null);
       }
     }).attachToRecyclerView(recyclerView);
-    
+
+//    getTaskByCategory("");
     taskViewModel.getAllTask().observe(getViewLifecycleOwner(), taskModals -> {
       recyclerViewAdapter = new RecyclerViewAdaptor(taskModals, this, getActivity());
       recyclerView.setAdapter(recyclerViewAdapter);
     });
   }
+  private void getTaskByCategory(String category){
+    if (category.equals("all")){
+      taskViewModel.getAllTask().observe(getViewLifecycleOwner(), taskModals -> {
+        recyclerViewAdapter = new RecyclerViewAdaptor(taskModals, this, getActivity());
+        recyclerView.setAdapter(recyclerViewAdapter);
+      });
+    }else {
+      taskViewModel.getCategory(category).observe(getViewLifecycleOwner(), taskModals -> {
+        recyclerViewAdapter = new RecyclerViewAdaptor(taskModals, this, getActivity());
+        recyclerView.setAdapter(recyclerViewAdapter);
+      });
+    }
+  }
+
   
   @Override
   public void onTaskClick(TaskModel taskModel) {
