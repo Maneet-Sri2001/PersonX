@@ -37,7 +37,6 @@
                     android:fontFamily="@font/poppins_bold"
                     android:text="@string/create_new_account"
                     android:textAlignment="center"
-                    android:textColor="@color/Black"
                     android:textSize="28sp" />
 
                 <!--        <TextView-->
@@ -147,7 +146,6 @@
                         android:layout_marginStart="5dp"
                         android:fontFamily="@font/poppins"
                         android:text="@string/by_continuing_you_agree_with_our_term_and_conditions_and_privacy_policy"
-                        android:textColor="@color/Black"
                         android:textSize="12sp" />
                 </LinearLayout>
 
@@ -182,7 +180,6 @@
                     android:layout_marginEnd="8dp"
                     android:fontFamily="@font/poppins"
                     android:text="@string/already_registered"
-                    android:textColor="@color/Black"
                     android:textSize="12sp" />
 
                 <TextView

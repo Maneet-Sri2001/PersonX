@@ -38,7 +38,6 @@
                     android:fontFamily="@font/poppins_bold"
                     android:text="@string/welcome_back"
                     android:textAlignment="center"
-                    android:textColor="@color/Black"
                     android:textSize="28sp" />
 
                 <TextView
@@ -48,7 +47,6 @@
                     android:fontFamily="@font/poppins"
                     android:text="@string/sign_in_to_continue"
                     android:textAlignment="center"
-                    android:textColor="@color/Black"
                     android:textSize="16sp" />
 
             </LinearLayout>
@@ -116,7 +114,6 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins"
                         android:text="@string/forgot_password_click_here"
-                        android:textColor="@color/Black"
                         android:textSize="12sp" />
 
                     <TextView
@@ -127,7 +124,6 @@
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/poppins"
                         android:text="Verify Mail"
-                        android:textColor="@color/Black"
                         android:textSize="12sp" />
                 </LinearLayout>
 
@@ -159,7 +155,6 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_bold"
                         android:text="@string/don_t_have_an_account"
-                        android:textColor="@color/Black"
                         android:textSize="12sp" />
 
                     <TextView
@@ -169,7 +164,7 @@
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/poppins"
                         android:text="@string/create_a_new_account"
-                        android:textColor="@color/Black"
+                        android:textColor="@color/purple_500"
                         android:textSize="12sp" />
 
                 </LinearLayout>
