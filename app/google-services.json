@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "688299951497",
+    "project_id": "personx-2cd6f",
+    "storage_bucket": "personx-2cd6f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:688299951497:android:75195410679be48fd58d58",
+        "android_client_info": {
+          "package_name": "com.collegeproject.personx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "688299951497-g8p0emusiqgbqs5ltjenuij9bjurg4oq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjUgf4WiyVzXURiBvJwA58Rc80-pxLzqo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "688299951497-g8p0emusiqgbqs5ltjenuij9bjurg4oq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
