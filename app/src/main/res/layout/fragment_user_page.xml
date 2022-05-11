@@ -15,16 +15,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
+<<<<<<< HEAD
+            android:layout_margin="10dp"
+            android:padding="3dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            app:cardCornerRadius="8dp"
+=======
             android:layout_margin="8dp"
             android:layout_marginStart="3dp"
             android:layout_marginEnd="3dp"
             android:padding="3dp"
             app:cardCornerRadius="5dp"
+>>>>>>> 207f49718fcd66aa829a13053064f1f7ad126f95
             app:cardElevation="4dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/purple_500"
                 android:orientation="vertical">
 
                 <RelativeLayout
@@ -37,10 +46,17 @@
                         android:layout_height="match_parent"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="20dp"
+<<<<<<< HEAD
+                        android:drawableStart="@drawable/ic_location_on"
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+=======
                         android:text="Location"
                         android:textSize="22sp"
                         app:drawableStartCompat="@drawable/ic_location_on"
                         app:drawableTint="@color/teal_200" />
+>>>>>>> 207f49718fcd66aa829a13053064f1f7ad126f95
 
                     <ImageView
                         android:id="@+id/get_weather"
@@ -107,7 +123,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text=" - -"
-                                android:textSize="70sp" />
+                                android:textSize="40sp" />
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -120,8 +136,12 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="bottom"
+<<<<<<< HEAD
+                                    android:textSize="36sp" />
+=======
                                     android:text="C"
                                     android:textSize="38sp" />
+>>>>>>> 207f49718fcd66aa829a13053064f1f7ad126f95
 
                                 <TextView
                                     android:id="@+id/real_feel"
@@ -142,7 +162,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="15dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="20dp"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="5dp">
 
