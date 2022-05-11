@@ -23,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ratan_tata"/>
+                android:src="@drawable/image1"/>
         </androidx.cardview.widget.CardView>
 
     </RelativeLayout>
@@ -115,8 +115,7 @@
             android:layout_marginRight="20dp"
             android:clickable="true"
             android:gravity="center"
-            android:layout_weight="1"
-            android:background="@drawable/add_pic_bg"/>
+            android:layout_weight="1" />
 
     </LinearLayout>
     <LinearLayout
