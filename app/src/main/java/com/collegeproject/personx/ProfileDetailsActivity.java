@@ -38,8 +38,6 @@ public class ProfileDetailsActivity extends AppCompatActivity {
     StorageReference storageRef;
     FirebaseAuth mAuth;
     Uri imageUri;
-    //StorageTask uploadTask;
-    //String myUri = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
