@@ -153,6 +153,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
   @Override
   public void onStatusChanged(String provider, int status, Bundle extras) {
     LocationListener.super.onStatusChanged(provider, status, extras);
+    TastyToasty.indigo(context, "Location Provider : " + provider, null).show();
   }
   
   @Override
@@ -163,5 +164,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
   @Override
   public void onProviderDisabled(@NonNull String provider) {
     LocationListener.super.onProviderDisabled(provider);
+    TastyToasty.error(context, "Location Disabled. Enable it.");
   }
 }
