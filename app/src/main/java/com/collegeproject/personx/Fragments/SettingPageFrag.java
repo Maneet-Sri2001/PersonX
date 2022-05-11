@@ -3,7 +3,6 @@ package com.collegeproject.personx.Fragments;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -12,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.DatePicker;
-import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -23,7 +21,6 @@ import androidx.annotation.Nullable;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 
-import com.collegeproject.personx.ProfileDetailsActivity;
 import com.collegeproject.personx.R;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -47,8 +44,6 @@ public class SettingPageFrag extends Fragment {
   private BottomAppBar bottomNavigationView;
   private FloatingActionButton floatingActionButton;
   private ScrollView scrollView;
-
-  LinearLayout profileLayout;
   
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -86,14 +81,6 @@ public class SettingPageFrag extends Fragment {
 //        }
 //      }
 //    });
-
-    profileLayout = getActivity().findViewById(R.id.profileLayout);
-    profileLayout.setOnClickListener(view1 -> {
-      Intent intent = new Intent(getContext(), ProfileDetailsActivity.class);
-      startActivity(intent);
-    });
-
-
     datetimeF.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {

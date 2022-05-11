@@ -15,9 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PersonX">
         <activity
-            android:name=".ProfileDetailsActivity"
-            android:exported="false" />
-        <activity
             android:name=".OnBoardActivity"
             android:exported="false" />
         <activity
@@ -29,14 +26,13 @@
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustNothing" />
+            android:windowSoftInputMode="adjustNothing"/>
     </application>
 
 </manifest>
