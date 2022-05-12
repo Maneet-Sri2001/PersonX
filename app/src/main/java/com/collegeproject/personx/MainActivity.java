@@ -27,6 +27,7 @@ import com.collegeproject.personx.Utils.TaskCreateFrag;
 import com.collegeproject.personx.Utils.UtilService;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.FirebaseApp;
 import com.uk.tastytoasty.TastyToasty;
 
 import pub.devrel.easypermissions.AfterPermissionGranted;
@@ -43,12 +44,14 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
   protected LocationManager locationManager;
   private SharedPreferenceClass sharedPreferenceClass;
   
+  
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     context = getApplicationContext();
-    UserDatabase userDatabase = UserDatabase.getUserRoomDatabase(context.getApplicationContext());
+    FirebaseApp.initializeApp(context);
+    UserDatabase userDatabase = UserDatabase.getInstance(context.getApplicationContext());
     userDAO = userDatabase.userDao();
     utilService = new UtilService();
     bottomNavigationView = findViewById(R.id.bottomNavigationView);

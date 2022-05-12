@@ -16,6 +16,7 @@ import com.collegeproject.personx.Model.UserModel;
 import com.collegeproject.personx.Model.WeatherModel;
 import com.collegeproject.personx.ViewModel.NewsViewModel;
 import com.collegeproject.personx.ViewModel.TaskViewModel;
+import com.collegeproject.personx.ViewModel.UserViewModel;
 import com.collegeproject.personx.ViewModel.WeatherViewModel;
 import com.kwabenaberko.newsapilib.NewsApiClient;
 import com.kwabenaberko.newsapilib.models.Article;
@@ -41,16 +42,10 @@ public class UserNetwork {
             JSONObject userObj = new JSONObject(response).getJSONObject("user");
             String name = userObj.get("name").toString(),
                 email = userObj.get("email").toString(),
-                //createdAt = userObj.get("createdAt").toString(),
+                createdAt = userObj.get("createdAt").toString(),
                 img = userObj.get("userImg").toString();
-            
-            UserModel userModal = new UserModel(name, email, img, "");
-            new Thread(new Runnable() {
-              @Override
-              public void run() {
-                //userDAO.registerUser(userModal);
-              }
-            });
+            UserModel userModel = new UserModel(name, email, img, createdAt);
+            UserViewModel.insert(userModel);
             JSONArray taskArray = userObj.getJSONArray("TaskCollection");
             for (int i = 0; i < taskArray.length(); i++) {
               JSONObject task = taskArray.getJSONObject(i);

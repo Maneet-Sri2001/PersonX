@@ -60,7 +60,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginEnd="15dp"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="5dp">
@@ -68,7 +68,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_margin="4dp"
                         android:orientation="horizontal"
                         android:weightSum="3">
 
@@ -151,7 +151,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
+                        android:layout_margin="5dp"
                         android:orientation="vertical">
 
                         <RelativeLayout
@@ -399,7 +399,8 @@
             <RelativeLayout
                 android:id="@+id/tophead"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -407,7 +408,8 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="20dp"
                     android:text="Top Headline"
-                    android:textSize="22sp" />
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/get_news"

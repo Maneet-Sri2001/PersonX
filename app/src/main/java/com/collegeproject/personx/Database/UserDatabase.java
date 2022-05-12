@@ -17,7 +17,7 @@ public abstract class UserDatabase extends RoomDatabase {
   private static final String dbName = "PersonX@UserDB";
   private static UserDatabase userDatabase;
   
-  public static synchronized UserDatabase getUserRoomDatabase(Context context) {
+  public static synchronized UserDatabase getInstance(Context context) {
     if (userDatabase == null) {
       userDatabase = Room.databaseBuilder(context.getApplicationContext(), UserDatabase.class, dbName)
           .fallbackToDestructiveMigration()

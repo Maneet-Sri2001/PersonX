@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.collegeproject.personx.Model.NewsModel;
 import com.collegeproject.personx.R;
+import com.uk.tastytoasty.TastyToasty;
 
 import java.util.List;
 
