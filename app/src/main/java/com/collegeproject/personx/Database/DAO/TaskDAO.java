@@ -11,6 +11,7 @@ import androidx.room.Update;
 import com.collegeproject.personx.Model.TaskModel;
 
 import java.util.List;
+
 @Dao
 public interface TaskDAO {
   @Insert(onConflict = OnConflictStrategy.REPLACE)

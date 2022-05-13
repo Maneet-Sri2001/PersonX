@@ -49,6 +49,8 @@ public class HomePageFrag extends Fragment implements OnTaskClickListener {
     floatingActionButton = getActivity().findViewById(R.id.fab);
     horizonatlScroll = getActivity().findViewById(R.id.horizontalScroll);
     
+    userViewModel = new ViewModelProvider.AndroidViewModelFactory(requireActivity().getApplication())
+        .create(UserViewModel.class);
     taskViewModel = new ViewModelProvider.AndroidViewModelFactory(requireActivity().getApplication())
         .create(TaskViewModel.class);
     

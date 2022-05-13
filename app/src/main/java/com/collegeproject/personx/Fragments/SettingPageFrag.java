@@ -3,6 +3,7 @@ package com.collegeproject.personx.Fragments;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -21,7 +22,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.collegeproject.personx.Model.UserModel;
+import com.collegeproject.personx.NetworkFile.UserNetwork;
 import com.collegeproject.personx.R;
+import com.collegeproject.personx.Utils.SharedPreferenceClass;
 import com.collegeproject.personx.ViewModel.UserViewModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -33,6 +36,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.uk.tastytoasty.TastyToasty;
 
@@ -41,8 +45,9 @@ import java.util.UUID;
 
 public class SettingPageFrag extends Fragment {
   
+  Context context;
   Dialog myDialog;
-  TextView datetimeF, firstdayweek, presetday, sendF, reportB, Cu, AppD, Privacy, Tnc;
+  TextView datetimeF, firstdayweek, presetday, userCreate, sendF, reportB, Cu, AppD, Privacy, Tnc;
   Calendar calendar = Calendar.getInstance();
   DatePickerDialog.OnDateSetListener setListener;
   TextView addPic, userName, userEmail;
@@ -56,13 +61,14 @@ public class SettingPageFrag extends Fragment {
   private ScrollView scrollView;
   private UserModel user;
   UserViewModel userViewModel;
-  String name = "";
   
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
     FirebaseApp.initializeApp(getContext());
+    
     View view = inflater.inflate(R.layout.fragment_setting_page, container, false);
+    context = view.getContext();
     myDialog = new Dialog(getContext());
     mAuth = FirebaseAuth.getInstance();
     storage = FirebaseStorage.getInstance();
@@ -77,37 +83,22 @@ public class SettingPageFrag extends Fragment {
     userName = view.findViewById(R.id.userName);
     userEmail = view.findViewById(R.id.user_email);
     profilePic = view.findViewById(R.id.profilePic);
+    userCreate = view.findViewById(R.id.user_create);
     bottomNavigationView = getActivity().findViewById(R.id.bottomAppBar);
     floatingActionButton = getActivity().findViewById(R.id.fab);
     scrollView = view.findViewById(R.id.settinglayout);
+    
     userViewModel = new ViewModelProvider.AndroidViewModelFactory(requireActivity().getApplication())
         .create(UserViewModel.class);
     return view;
   }
   
   @Override
-  public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
-    if (requestCode == 1 && resultCode == getActivity().RESULT_OK && data != null && data.getData() != null) {
-      imageUri = data.getData();
-      // profilePic.setImageURI(imageUri);
-      uploadPicture();
-    }
-  }
-  
-  @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     
-    userViewModel.getUser().observe(getViewLifecycleOwner(), userModel -> {
-      try {
-        userName.setText(userModel.getName());
-        userEmail.setText(userModel.getEmail());
-        Picasso.get().load(Uri.parse(userModel.getImg())).into(profilePic);
-      } catch (Exception e) {
-        TastyToasty.error(getContext(), e.toString()).show();
-      }
-    });
+    userViewModel.getUser().observe(getViewLifecycleOwner(), this::setUser);
+
 
 //    datetimeF.setOnClickListener(new View.OnClickListener() {
 //      @Override
@@ -257,7 +248,6 @@ public class SettingPageFrag extends Fragment {
         });
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.show();
-        
       }
     });
     reportB.setOnClickListener(new View.OnClickListener() {
@@ -276,13 +266,11 @@ public class SettingPageFrag extends Fragment {
         });
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.show();
-        
       }
     });
     Cu.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        
         TextView txtclose;
         myDialog.setContentView(R.layout.pop_feedback);
         txtclose = myDialog.findViewById(R.id.txtclose);
@@ -295,13 +283,11 @@ public class SettingPageFrag extends Fragment {
         });
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.show();
-        
       }
     });
     AppD.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        
         TextView txtclose;
         myDialog.setContentView(R.layout.pop_bug);
         txtclose = myDialog.findViewById(R.id.txtclose);
@@ -314,7 +300,6 @@ public class SettingPageFrag extends Fragment {
         });
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.show();
-        
       }
     });
     Privacy.setOnClickListener(new View.OnClickListener() {
@@ -339,9 +324,8 @@ public class SettingPageFrag extends Fragment {
     Tnc.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        
         TextView txtclose;
-        myDialog.setContentView(R.layout.pop_bug);
+        myDialog.setTitle("Terms n Conditions");
         txtclose = myDialog.findViewById(R.id.txtclose);
         txtclose.setText("Close");
         txtclose.setOnClickListener(new View.OnClickListener() {
@@ -352,9 +336,37 @@ public class SettingPageFrag extends Fragment {
         });
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.show();
-        
       }
     });
+  }
+  
+  private void setUser(UserModel user) {
+    userName.setText(user.getName());
+    userEmail.setText(user.getEmail());
+    Picasso.get()
+        .load(user.getImg())
+        .placeholder(R.drawable.account)
+        .error(R.drawable.account).noFade().resize(200, 200)
+        .into(profilePic, new Callback() {
+          @Override
+          public void onSuccess() {
+          }
+          
+          @Override
+          public void onError(Exception e) {
+            TastyToasty.error(context, "Error : " + e.toString()).show();
+          }
+        });
+    userCreate.setText(user.getCreated());
+  }
+  
+  @Override
+  public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    if (requestCode == 1 && resultCode == getActivity().RESULT_OK && data != null && data.getData() != null) {
+      imageUri = data.getData();
+      uploadPicture();
+    }
   }
   
   private void uploadPicture() {
@@ -368,17 +380,17 @@ public class SettingPageFrag extends Fragment {
         .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
           @Override
           public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-            pd.dismiss();
-            // Snackbar.make(findViewById(android.R.id.content), "Image uploaded", Snackbar.LENGTH_LONG).show();
             riversRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
               @Override
               public void onSuccess(Uri uri) {
-                UserViewModel.delete();
                 UserModel userModel = new UserModel(
                     userName.getText().toString(),
                     userEmail.getText().toString(),
-                    uri.toString(), "");
-                UserViewModel.insert(userModel);
+                    uri.toString(),
+                    userCreate.getText().toString());
+                String userId = new SharedPreferenceClass(getActivity().getApplicationContext()).getValueString("token");
+                UserNetwork.updateUser(userId, context, userModel);
+                pd.dismiss();
               }
             });
           }
@@ -397,6 +409,5 @@ public class SettingPageFrag extends Fragment {
             pd.setMessage("Percentage: " + (int) progressPercent + "%");
           }
         });
-    
   }
 }

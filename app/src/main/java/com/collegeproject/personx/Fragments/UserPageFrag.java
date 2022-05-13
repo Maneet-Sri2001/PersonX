@@ -83,7 +83,7 @@ public class UserPageFrag extends Fragment implements OnNewsClickListener {
       try {
         setWeather();
       } catch (Exception e) {
-        //TastyToasty.error(context, e.getMessage()).show();
+        TastyToasty.error(context, e.getMessage()).show();
       }
     });
     
@@ -114,7 +114,7 @@ public class UserPageFrag extends Fragment implements OnNewsClickListener {
           }
           view.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.circle_animation));
         } catch (Exception e) {
-          TastyToasty.error(context, e.getMessage()).show();
+          TastyToasty.error(context, "Error Here : "+e.getMessage()).show();
         }
       }
     });

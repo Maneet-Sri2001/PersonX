@@ -1,14 +1,14 @@
 package com.collegeproject.personx.Model;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "userTable")
 public class UserModel {
-  @PrimaryKey(autoGenerate = true)
-  Integer id;
-  
+  @PrimaryKey(autoGenerate = false)
+  @NonNull
   @ColumnInfo(name = "userName")
   String name;
   
@@ -26,14 +26,6 @@ public class UserModel {
     this.email = email;
     this.img = img;
     this.created = created;
-  }
-  
-  public Integer getId() {
-    return id;
-  }
-  
-  public void setId(Integer id) {
-    this.id = id;
   }
   
   public String getName() {

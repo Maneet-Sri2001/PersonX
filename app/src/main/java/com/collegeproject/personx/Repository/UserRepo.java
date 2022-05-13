@@ -20,7 +20,7 @@ public class UserRepo {
   }
   
   public void insert(UserModel model) {
-    new UserRepo.InsUser(userDAO).execute(model);
+    new InsUser(userDAO).execute(model);
   }
   
   public void update(UserModel model) {
