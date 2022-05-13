@@ -28,5 +28,6 @@
     <string name="desc_three">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</string>
     <string name="desc_fourth">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</string>
     <string name="forgot_password_click_here">Forgot Password</string>
+    <string name="app_description">PersonX is a task management app to help you stay organized and manage your day-to-day.\n You can use PersonX to make shopping lists or task lists, take notes, record collections, plan an event, or set reminders to increase your productivity and focus on what matters to you.\n PersonX makes it easy to stay organized and manage your life.\n\nPersonX’s modern, easy-to-use experience makes your lists unique, with customizable features like emoji in lists, colorful themes, dark mode, and more.</string>
 
 </resources>

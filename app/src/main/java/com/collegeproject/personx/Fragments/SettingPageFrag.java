@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -98,8 +99,6 @@ public class SettingPageFrag extends Fragment {
     super.onViewCreated(view, savedInstanceState);
     
     userViewModel.getUser().observe(getViewLifecycleOwner(), this::setUser);
-
-
 //    datetimeF.setOnClickListener(new View.OnClickListener() {
 //      @Override
 //      public void onClick(View view) {
@@ -248,10 +247,12 @@ public class SettingPageFrag extends Fragment {
     reportB.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        
-        TextView txtclose;
+        TextView txtclose, txtSub;
+        AppCompatButton sub;
         myDialog.setContentView(R.layout.pop_bug);
         txtclose = myDialog.findViewById(R.id.txtclose);
+        txtSub = myDialog.findViewById(R.id.textSub);
+        sub = myDialog.findViewById(R.id.customButton3);
         txtclose.setText("Close");
         txtclose.setOnClickListener(new View.OnClickListener() {
           @Override
@@ -259,7 +260,17 @@ public class SettingPageFrag extends Fragment {
             myDialog.dismiss();
           }
         });
-        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        sub.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+            Intent email = new Intent(Intent.ACTION_SENDTO);
+            email.setData(Uri.parse("mailto:"));
+            email.putExtra(Intent.EXTRA_EMAIL, new String[]{"feedbackSupport@personxTeam.com"});
+            email.putExtra(Intent.EXTRA_SUBJECT, "User Feedback Review");
+            email.putExtra(Intent.EXTRA_TEXT, txtSub.getText().toString());
+            startActivity(Intent.createChooser(email, "Choose an Email client :"));
+          }
+        });
         myDialog.show();
       }
     });
@@ -267,15 +278,8 @@ public class SettingPageFrag extends Fragment {
       @Override
       public void onClick(View view) {
         TextView txtclose;
-        myDialog.setContentView(R.layout.pop_feedback);
-        txtclose = myDialog.findViewById(R.id.txtclose);
-        txtclose.setText("Close");
-        txtclose.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-            myDialog.dismiss();
-          }
-        });
+        myDialog.setContentView(R.layout.popup_contact_us);
+        myDialog.setTitle("Members and Collaborators to Contact ");
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.show();
       }
@@ -285,17 +289,7 @@ public class SettingPageFrag extends Fragment {
     AppD.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        TextView txtclose;
-        myDialog.setContentView(R.layout.pop_bug);
-        txtclose = myDialog.findViewById(R.id.txtclose);
-        txtclose.setText("Close");
-        txtclose.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-            myDialog.dismiss();
-          }
-        });
-        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        myDialog.setContentView(R.layout.popup_appdetails);
         myDialog.show();
       }
     });
@@ -304,7 +298,7 @@ public class SettingPageFrag extends Fragment {
       public void onClick(View view) {
         
         TextView txtclose;
-        myDialog.setContentView(R.layout.pop_feedback);
+        myDialog.setContentView(R.layout.popup_contact_us);
         txtclose = myDialog.findViewById(R.id.txtclose);
         txtclose.setText("Close");
         txtclose.setOnClickListener(new View.OnClickListener() {
@@ -321,17 +315,6 @@ public class SettingPageFrag extends Fragment {
     Tnc.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        TextView txtclose;
-        myDialog.setTitle("Terms n Conditions");
-        txtclose = myDialog.findViewById(R.id.txtclose);
-        txtclose.setText("Close");
-        txtclose.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-            myDialog.dismiss();
-          }
-        });
-        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.show();
       }
     });
@@ -358,7 +341,7 @@ public class SettingPageFrag extends Fragment {
     } catch (Exception e) {
       profilePic.setImageResource(R.drawable.account);
     }
-    userCreate.setText(user.getCreated());
+    userCreate.setText(user.getCreated().substring(0,15));
   }
   
   @Override

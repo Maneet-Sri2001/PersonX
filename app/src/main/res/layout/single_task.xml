@@ -15,10 +15,10 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="5dp"
         android:padding="@dimen/dimen_0"
-        app:tint="@color/teal_200"
         android:src="@drawable/ic_task_done"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/teal_200" />
 
     <TextView
         android:id="@+id/todo_row_todo"

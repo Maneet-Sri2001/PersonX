@@ -215,10 +215,12 @@
                 android:id="@+id/idsupport"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
+                android:drawablePadding="10dp"
                 android:fontFamily="@font/poppins"
                 android:text="Support"
-                android:textSize="25sp" />
+                android:textSize="25sp"
+                app:drawableStartCompat="@drawable/ic_round_support_agent_24" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -242,32 +244,36 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
+                        android:drawablePadding="5dp"
                         android:fontFamily="@font/poppins"
                         android:text="Send Feedback"
                         android:textColor="#585858"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        app:drawableStartCompat="@drawable/ic_feedback_24" />
 
                     <TextView
                         android:id="@+id/reportabug"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
+                        android:drawablePadding="5dp"
                         android:fontFamily="@font/poppins"
                         android:text="Report a bug"
                         android:textColor="#585858"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        app:drawableStartCompat="@drawable/ic_round_bug_report_24" />
 
                     <TextView
                         android:id="@+id/idcontactus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
+                        android:drawablePadding="5dp"
                         android:fontFamily="@font/poppins"
                         android:text="Contact us"
                         android:textColor="#585858"
-                        android:textSize="18sp" />
-
-
+                        android:textSize="18sp"
+                        app:drawableStartCompat="@drawable/ic_round_contact_support_24" />
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
@@ -283,10 +289,13 @@
                 android:id="@+id/idaboutus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
+                android:drawablePadding="10dp"
                 android:fontFamily="@font/poppins"
+                android:padding="5dp"
                 android:text="About us"
-                android:textSize="25sp" />
+                android:textSize="25sp"
+                app:drawableStartCompat="@drawable/ic_info" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -311,30 +320,36 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
+                        android:drawablePadding="5dp"
                         android:fontFamily="@font/poppins"
                         android:text="App details"
                         android:textColor="#585858"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        app:drawableStartCompat="@drawable/ic_baseline_description_24" />
 
                     <TextView
                         android:id="@+id/idprivacy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
+                        android:layout_marginTop="4dp"
+                        android:drawablePadding="5dp"
                         android:fontFamily="@font/poppins"
                         android:text="Privacy"
                         android:textColor="#585858"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        app:drawableStartCompat="@drawable/ic_privacy" />
 
                     <TextView
                         android:id="@+id/idtnc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
+                        android:layout_marginTop="4dp"
+                        android:drawablePadding="5dp"
                         android:fontFamily="@font/poppins"
                         android:text="Terms and conditions"
                         android:textColor="#585858"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        app:drawableStartCompat="@drawable/ic_tnc" />
 
                 </LinearLayout>
 
