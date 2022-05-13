@@ -232,22 +232,17 @@ public class SettingPageFrag extends Fragment {
         startActivityForResult(intent, 1);
       }
     });
+    
+    //Support Dialog
     sendF.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        
-        TextView txtclose;
-        myDialog.setContentView(R.layout.pop_feedback);
-        txtclose = myDialog.findViewById(R.id.txtclose);
-        txtclose.setText("Close");
-        txtclose.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-            myDialog.dismiss();
-          }
-        });
-        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        myDialog.show();
+        Intent email = new Intent(Intent.ACTION_SENDTO);
+        email.setData(Uri.parse("mailto:"));
+        email.putExtra(Intent.EXTRA_EMAIL, new String[]{"feedbackSupport@personxTeam.com"});
+        email.putExtra(Intent.EXTRA_SUBJECT, "User Feedback Review");
+        email.putExtra(Intent.EXTRA_TEXT, "");
+        startActivity(Intent.createChooser(email, "Choose an Email client :"));
       }
     });
     reportB.setOnClickListener(new View.OnClickListener() {
@@ -285,6 +280,8 @@ public class SettingPageFrag extends Fragment {
         myDialog.show();
       }
     });
+    
+    //About Us Dialog
     AppD.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
@@ -343,20 +340,24 @@ public class SettingPageFrag extends Fragment {
   private void setUser(UserModel user) {
     userName.setText(user.getName());
     userEmail.setText(user.getEmail());
-    Picasso.get()
-        .load(user.getImg())
-        .placeholder(R.drawable.account)
-        .error(R.drawable.account).noFade().resize(200, 200)
-        .into(profilePic, new Callback() {
-          @Override
-          public void onSuccess() {
-          }
-          
-          @Override
-          public void onError(Exception e) {
-            TastyToasty.error(context, "Error : " + e.toString()).show();
-          }
-        });
+    try {
+      Picasso.get()
+          .load(user.getImg())
+          .placeholder(R.drawable.account).noFade().resize(200, 200)
+          .error(R.drawable.account).noFade().resize(200, 200)
+          .into(profilePic, new Callback() {
+            @Override
+            public void onSuccess() {
+            }
+            
+            @Override
+            public void onError(Exception e) {
+              TastyToasty.error(context, "Error : " + e.toString()).show();
+            }
+          });
+    } catch (Exception e) {
+      profilePic.setImageResource(R.drawable.account);
+    }
     userCreate.setText(user.getCreated());
   }
   
