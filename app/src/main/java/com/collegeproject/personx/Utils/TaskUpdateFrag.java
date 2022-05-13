@@ -10,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -93,10 +94,12 @@ public class TaskUpdateFrag extends BottomSheetDialogFragment {
     taskPriority.setImageResource(prio.get(taskModel.getPriority().toUpperCase(Locale.ROOT)));
     
     taskRemind.setOnClickListener(new View.OnClickListener() {
-      int button01pos = 0;
+      int button01pos = 1;
       
       @Override
       public void onClick(View view) {
+        Animation shake = AnimationUtils.loadAnimation(view.getContext(), R.anim.ring);
+        view.startAnimation(shake);
         if (button01pos == 0) {
           taskRemind.setImageResource(R.drawable.ic_alert_off);
           button01pos = 1;

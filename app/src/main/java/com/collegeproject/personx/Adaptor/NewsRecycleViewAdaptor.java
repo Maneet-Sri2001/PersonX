@@ -1,10 +1,8 @@
 package com.collegeproject.personx.Adaptor;
 
 import android.app.Activity;
-import android.app.Dialog;
-import android.content.Context;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,11 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.collegeproject.personx.Model.NewsModel;
 import com.collegeproject.personx.R;
-import com.uk.tastytoasty.TastyToasty;
 
 import java.util.List;
 
-public class NewsRecycleViewAdaptor extends  RecyclerView.Adapter<NewsRecycleViewAdaptor.ViewHolder>{
+public class NewsRecycleViewAdaptor extends RecyclerView.Adapter<NewsRecycleViewAdaptor.ViewHolder> {
   
   private final List<NewsModel> newsModelList;
   private final OnNewsClickListener onNewsClickListener;
@@ -47,6 +44,14 @@ public class NewsRecycleViewAdaptor extends  RecyclerView.Adapter<NewsRecycleVie
     holder.auth.setText(model.getAuthor());
     holder.pub.setText(model.getPublishAt());
     Glide.with(holder.itemView).load(model.getImgUrl()).into(holder.img);
+    holder.itemView.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(model.getNewsUrl()));
+        view.getContext().startActivity(intent);
+      }
+    });
   }
   
   @Override
@@ -67,7 +72,7 @@ public class NewsRecycleViewAdaptor extends  RecyclerView.Adapter<NewsRecycleVie
       pub = itemView.findViewById(R.id.news_publishAt);
       auth = itemView.findViewById(R.id.news_author);
     }
-  
+    
     @Override
     public void onClick(View view) {
       onNewsClickListener.onNewsClick(newsModelList.get(getAdapterPosition()));

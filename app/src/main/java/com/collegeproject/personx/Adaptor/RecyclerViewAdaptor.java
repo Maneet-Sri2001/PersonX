@@ -1,24 +1,23 @@
 package com.collegeproject.personx.Adaptor;
 
+import android.animation.Animator;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.collegeproject.personx.Model.TaskModel;
+import com.collegeproject.personx.NetworkFile.TaskNetwork;
 import com.collegeproject.personx.R;
 import com.collegeproject.personx.Utils.UtilService;
-import com.collegeproject.personx.ViewModel.TaskViewModel;
 import com.google.android.material.chip.Chip;
 
 import java.util.List;
@@ -52,13 +51,38 @@ public class RecyclerViewAdaptor extends RecyclerView.Adapter<RecyclerViewAdapto
         new int[]{
             Color.LTGRAY,  //disabled
             UtilService.priorityColor(task)
-          
         });
     
     holder.task.setText(task.getTaskDes());
     holder.todayChip.setText(formatted);
     holder.todayChip.setTextColor(UtilService.priorityColor(task));
     holder.todayChip.setChipIconTint(colorStateList);
+    if (task.getStatus().equals("Completed"))
+      holder.delete.setImageResource(R.drawable.ic_task_done);
+    else {
+      holder.delete.setOnClickListener(new View.OnClickListener() {
+        int button01pos = 0;
+        
+        @Override
+        public void onClick(View view) {
+          if (button01pos == 0) {
+            holder.delete.setImageResource(R.drawable.ic_task_done);
+            TaskNetwork.completeTask(activity.getApplicationContext(), task);
+            button01pos = 1;
+          } else if (button01pos == 1) {
+            holder.delete.setImageResource(R.drawable.ic_circle);
+            button01pos = 0;
+          }
+          int cx = view.getMeasuredWidth() / 2;
+          int cy = view.getMeasuredHeight() / 2;
+          int finalRadius = Math.max(view.getWidth(), view.getHeight()) / 2;
+          Animator anim =
+              ViewAnimationUtils.createCircularReveal(view, cx, cy, 0, finalRadius);
+          view.setVisibility(View.VISIBLE);
+          anim.start();
+        }
+      });
+    }
   }
   
   @Override
@@ -79,25 +103,6 @@ public class RecyclerViewAdaptor extends RecyclerView.Adapter<RecyclerViewAdapto
       todayChip = itemView.findViewById(R.id.todo_row_chip);
       this.onToDoClickListener = onTaskClickListener;
       itemView.setOnClickListener(this);
-      delete.setOnClickListener(view -> {
-        AlertDialog.Builder builder = new AlertDialog.Builder(itemView.getContext());
-        builder.setMessage("Are you sure want to delete this entry ?")
-            .setCancelable(false)
-            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-              @Override
-              public void onClick(DialogInterface dialogInterface, int i) {
-                TaskViewModel.delete(taskList.get(getAdapterPosition()));
-              }
-            })
-            .setNegativeButton("No", new DialogInterface.OnClickListener() {
-              @Override
-              public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.cancel();
-              }
-            });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-      });
     }
     
     @Override

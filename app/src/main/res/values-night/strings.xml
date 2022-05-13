@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_description">PersonX is a task management app to help you stay organized and manage your day-to-day.\n You can use PersonX to make shopping lists or task lists, take notes, record collections, plan an event, or set reminders to increase your productivity and focus on what matters to you.\n PersonX makes it easy to stay organized and manage your life.\n\nPersonX’s modern, easy-to-use experience makes your lists unique, with customizable features like emoji in lists, colorful themes, dark mode, and more.</string>
+  <string name="privacy1">PersonX is a free task manager, to-do list, planner, and reminder app to help you organize, plan, and accomplish any project. To give you the best possible experience, we collect and store some certain information that lets us tailor our services best. The transmission of the data is secured with HTTPS and we do our best to secure this data from any third party.</string>
+  <string name="tnc2">Memorigi respects Your privacy rights and recognizes the importance of protecting any information collected about You. Please read our Privacy Policy, the terms of which are incorporated herein, for more information about how we collect and use personal and non-personal data in relations to Our Products and Services.</string>
 </resources>

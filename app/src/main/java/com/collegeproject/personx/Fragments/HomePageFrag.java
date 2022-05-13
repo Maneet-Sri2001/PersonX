@@ -1,6 +1,8 @@
 package com.collegeproject.personx.Fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.HorizontalScrollView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -26,6 +29,8 @@ import com.collegeproject.personx.ViewModel.UserViewModel;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.uk.tastytoasty.TastyToasty;
+
+import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
 public class HomePageFrag extends Fragment implements OnTaskClickListener {
   TaskViewModel taskViewModel;
@@ -97,19 +102,6 @@ public class HomePageFrag extends Fragment implements OnTaskClickListener {
         }
       }
     });
-    new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
-        ItemTouchHelper.RIGHT) {
-      @Override
-      public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-        TastyToasty.success(getContext(), "Check");
-        return false;
-      }
-      
-      @Override
-      public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-        TastyToasty.yellow(recyclerView.getContext(), "Item Swiped", null);
-      }
-    }).attachToRecyclerView(recyclerView);
     
     taskViewModel.getAllTask().observe(getViewLifecycleOwner(), taskModals -> {
       recyclerViewAdapter = new RecyclerViewAdaptor(taskModals, this, getActivity());

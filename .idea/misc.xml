@@ -30,6 +30,7 @@
         <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/drawable/ic_complete.xml" value="0.2" />
         <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/drawable/ic_deadline.xml" value="0.2" />
         <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/drawable/ic_flag.xml" value="0.2" />
+        <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1235" />
         <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/drawable/ic_manage_accounts.xml" value="0.2" />
         <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/drawable/ic_next_week.xml" value="0.2" />
         <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/drawable/ic_note.xml" value="0.2" />
@@ -44,7 +45,7 @@
         <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/drawable/ic_writer.xml" value="0.168" />
         <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/drawable/splash_background.xml" value="0.2" />
         <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/font/poppins.xml" value="0.1" />
-        <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/layout/activity_main.xml" value="0.33177083333333335" />
+        <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/layout/activity_on_board.xml" value="0.1" />
         <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/layout/activity_profile_details.xml" value="0.21927083333333333" />
         <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/layout/activity_register.xml" value="0.33177083333333335" />
@@ -66,6 +67,8 @@
         <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/layout/pop_firstdayweek.xml" value="0.17999144933732364" />
         <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/layout/popup_appdetails.xml" value="0.17999144933732364" />
         <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/layout/popup_contact_us.xml" value="0.17999144933732364" />
+        <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/layout/popup_privacy.xml" value="0.17999144933732364" />
+        <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/layout/popup_tnc.xml" value="0.17999144933732364" />
         <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/layout/single_news_recycler.xml" value="0.33177083333333335" />
         <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/layout/single_task.xml" value="0.33177083333333335" />
         <entry key="..\:/Users/manee/AndroidStudioProjects/PersonX2/app/src/main/res/layout/task_bottom_sheet.xml" value="0.264" />

@@ -50,6 +50,7 @@ public class UserNetwork {
         @Override
         public void onResponse(String response) {
           try {
+            TaskViewModel.deleteAll();
             JSONObject userObj = new JSONObject(response).getJSONObject("user");
             String name = userObj.get("name").toString(),
                 email = userObj.get("email").toString(),
@@ -146,6 +147,46 @@ public class UserNetwork {
     // request add
     RequestQueue requestQueue = Volley.newRequestQueue(context);
     requestQueue.add(jsonObjectRequest);
+  }
+  
+  public static void verifyMail(String email, Context context) {
+    String url = "https://personx.herokuapp.com/user/authenticate/mail";
+    HashMap<String, String> body = new HashMap<>();
+    body.put("email", email);
+    JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url,
+        new JSONObject(body), new Response.Listener<JSONObject>() {
+      @Override
+      public void onResponse(JSONObject response) {
+        try {
+          TastyToasty.violet(context, response.getString("message"), null).show();
+        } catch (JSONException e) {
+          TastyToasty.error(context, e.toString()).show();
+        }
+      }
+    }, new Response.ErrorListener() {
+      @Override
+      public void onErrorResponse(VolleyError error) {
+        NetworkResponse response = error.networkResponse;
+        if (error instanceof ServerError && response != null) {
+          try {
+            String res = new String(response.data, HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+            JSONObject obj = new JSONObject(res);
+            TastyToasty.error(context.getApplicationContext(), obj.getString("message")).show();
+          } catch (JSONException | UnsupportedEncodingException je) {
+            je.printStackTrace();
+          }
+        }
+      }
+    });
+    // set retry policy
+    int socketTime = 3000;
+    RetryPolicy policy = new DefaultRetryPolicy(socketTime,
+        DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+    request.setRetryPolicy(policy);
+    
+    // request add
+    RequestQueue requestQueue = Volley.newRequestQueue(context);
+    requestQueue.add(request);
   }
   
   public static void getNews(Context context) {

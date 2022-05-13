@@ -141,7 +141,7 @@ public class TaskNetwork {
   }
   
   //Set Task as Completed
-  public void completeTask(TaskModel taskModal) {
+  public static void completeTask(Context context, TaskModel taskModal) {
     String url = "https://personx.herokuapp.com/task/" + taskModal.get_id();
     final Boolean[] res = {false};
     StringRequest request = new StringRequest(Request.Method.PUT, url, new Response.Listener<String>() {
@@ -152,7 +152,7 @@ public class TaskNetwork {
           if (res[0]) {
             String taskId = new JSONObject(response).getString("taskId");
             taskModal.set_id(taskId);
-            TaskViewModel.insert(taskModal);
+            TaskViewModel.completeTask(taskModal);
           }
           String message = new JSONObject(response).getString("message");
           TastyToasty.success(context, message).show();

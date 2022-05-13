@@ -1,5 +1,6 @@
 package com.collegeproject.personx.Fragments;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -25,8 +26,12 @@ import androidx.lifecycle.ViewModelProvider;
 import com.collegeproject.personx.Model.UserModel;
 import com.collegeproject.personx.NetworkFile.UserNetwork;
 import com.collegeproject.personx.R;
+import com.collegeproject.personx.SplashScreen;
 import com.collegeproject.personx.Utils.SharedPreferenceClass;
+import com.collegeproject.personx.ViewModel.NewsViewModel;
+import com.collegeproject.personx.ViewModel.TaskViewModel;
 import com.collegeproject.personx.ViewModel.UserViewModel;
+import com.collegeproject.personx.ViewModel.WeatherViewModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomappbar.BottomAppBar;
@@ -48,7 +53,7 @@ public class SettingPageFrag extends Fragment {
   
   Context context;
   Dialog myDialog;
-  TextView datetimeF, firstdayweek, presetday, userCreate, sendF, reportB, Cu, AppD, Privacy, Tnc;
+  TextView datetimeF, firstdayweek, logout, userCreate, sendF, reportB, Cu, AppD, Privacy, Tnc;
   Calendar calendar = Calendar.getInstance();
   DatePickerDialog.OnDateSetListener setListener;
   TextView addPic, userName, userEmail;
@@ -85,6 +90,7 @@ public class SettingPageFrag extends Fragment {
     userEmail = view.findViewById(R.id.user_email);
     profilePic = view.findViewById(R.id.profilePic);
     userCreate = view.findViewById(R.id.user_create);
+    logout = view.findViewById(R.id.accountdelete);
     bottomNavigationView = getActivity().findViewById(R.id.bottomAppBar);
     floatingActionButton = getActivity().findViewById(R.id.fab);
     scrollView = view.findViewById(R.id.settinglayout);
@@ -99,6 +105,105 @@ public class SettingPageFrag extends Fragment {
     super.onViewCreated(view, savedInstanceState);
     
     userViewModel.getUser().observe(getViewLifecycleOwner(), this::setUser);
+    
+    logout.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        try {
+          new SharedPreferenceClass(context).clear();
+          startActivity(new Intent(getActivity(), SplashScreen.class));
+          getActivity().finish();
+        } catch (Exception e) {
+          TastyToasty.error(context, e.toString()).show();
+        }
+      }
+    });
+    addPic.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        startActivityForResult(intent, 1);
+      }
+    });
+    
+    //Support Dialog
+    sendF.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        Intent email = new Intent(Intent.ACTION_SENDTO);
+        email.setData(Uri.parse("mailto:"));
+        email.putExtra(Intent.EXTRA_EMAIL, new String[]{"feedbackSupport@personxTeam.com"});
+        email.putExtra(Intent.EXTRA_SUBJECT, "User Feedback Review");
+        email.putExtra(Intent.EXTRA_TEXT, "");
+        startActivity(Intent.createChooser(email, "Choose an Email client :"));
+      }
+    });
+    reportB.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        TextView txtclose, txtSub;
+        AppCompatButton sub;
+        myDialog.setContentView(R.layout.pop_bug);
+        txtclose = myDialog.findViewById(R.id.txtclose);
+        txtSub = myDialog.findViewById(R.id.textSub);
+        sub = myDialog.findViewById(R.id.customButton3);
+        txtclose.setText("Close");
+        txtclose.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            myDialog.dismiss();
+          }
+        });
+        sub.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+            Intent email = new Intent(Intent.ACTION_SENDTO);
+            email.setData(Uri.parse("mailto:"));
+            email.putExtra(Intent.EXTRA_EMAIL, new String[]{"feedbackSupport@personxTeam.com"});
+            email.putExtra(Intent.EXTRA_SUBJECT, "User Feedback Review");
+            email.putExtra(Intent.EXTRA_TEXT, txtSub.getText().toString());
+            startActivity(Intent.createChooser(email, "Choose an Email client :"));
+          }
+        });
+        myDialog.show();
+      }
+    });
+    Cu.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        TextView txtclose;
+        myDialog.setContentView(R.layout.popup_contact_us);
+        myDialog.setTitle("Members and Collaborators to Contact ");
+        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        myDialog.show();
+      }
+    });
+    
+    //About Us Dialog
+    AppD.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        myDialog.setContentView(R.layout.popup_appdetails);
+        myDialog.show();
+      }
+    });
+    Privacy.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        myDialog.setContentView(R.layout.popup_privacy);
+        myDialog.show();
+        
+      }
+    });
+    Tnc.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        myDialog.setContentView(R.layout.popup_tnc);
+        myDialog.show();
+      }
+    });
 //    datetimeF.setOnClickListener(new View.OnClickListener() {
 //      @Override
 //      public void onClick(View view) {
@@ -222,102 +327,6 @@ public class SettingPageFrag extends Fragment {
 //
 //      }
 //    });
-    addPic.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        intent.setType("image/*");
-        startActivityForResult(intent, 1);
-      }
-    });
-    
-    //Support Dialog
-    sendF.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        Intent email = new Intent(Intent.ACTION_SENDTO);
-        email.setData(Uri.parse("mailto:"));
-        email.putExtra(Intent.EXTRA_EMAIL, new String[]{"feedbackSupport@personxTeam.com"});
-        email.putExtra(Intent.EXTRA_SUBJECT, "User Feedback Review");
-        email.putExtra(Intent.EXTRA_TEXT, "");
-        startActivity(Intent.createChooser(email, "Choose an Email client :"));
-      }
-    });
-    reportB.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        TextView txtclose, txtSub;
-        AppCompatButton sub;
-        myDialog.setContentView(R.layout.pop_bug);
-        txtclose = myDialog.findViewById(R.id.txtclose);
-        txtSub = myDialog.findViewById(R.id.textSub);
-        sub = myDialog.findViewById(R.id.customButton3);
-        txtclose.setText("Close");
-        txtclose.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-            myDialog.dismiss();
-          }
-        });
-        sub.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View view) {
-            Intent email = new Intent(Intent.ACTION_SENDTO);
-            email.setData(Uri.parse("mailto:"));
-            email.putExtra(Intent.EXTRA_EMAIL, new String[]{"feedbackSupport@personxTeam.com"});
-            email.putExtra(Intent.EXTRA_SUBJECT, "User Feedback Review");
-            email.putExtra(Intent.EXTRA_TEXT, txtSub.getText().toString());
-            startActivity(Intent.createChooser(email, "Choose an Email client :"));
-          }
-        });
-        myDialog.show();
-      }
-    });
-    Cu.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        TextView txtclose;
-        myDialog.setContentView(R.layout.popup_contact_us);
-        myDialog.setTitle("Members and Collaborators to Contact ");
-        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        myDialog.show();
-      }
-    });
-    
-    //About Us Dialog
-    AppD.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        myDialog.setContentView(R.layout.popup_appdetails);
-        myDialog.show();
-      }
-    });
-    Privacy.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        
-        TextView txtclose;
-        myDialog.setContentView(R.layout.popup_contact_us);
-        txtclose = myDialog.findViewById(R.id.txtclose);
-        txtclose.setText("Close");
-        txtclose.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-            myDialog.dismiss();
-          }
-        });
-        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        myDialog.show();
-        
-      }
-    });
-    Tnc.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        myDialog.show();
-      }
-    });
   }
   
   private void setUser(UserModel user) {
@@ -341,13 +350,14 @@ public class SettingPageFrag extends Fragment {
     } catch (Exception e) {
       profilePic.setImageResource(R.drawable.account);
     }
-    userCreate.setText(user.getCreated().substring(0,15));
+    userCreate.setText(user.getCreated().substring(0, 15));
   }
   
   @Override
   public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
-    if (requestCode == 1 && resultCode == getActivity().RESULT_OK && data != null && data.getData() != null) {
+    getActivity();
+    if (requestCode == 1 && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
       imageUri = data.getData();
       uploadPicture();
     }
