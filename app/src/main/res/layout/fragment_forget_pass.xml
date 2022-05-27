@@ -34,9 +34,15 @@
 
     <ProgressBar
       android:id="@+id/forpass_progress_bar"
+      style="?android:attr/progressBarStyleHorizontal"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_centerInParent="true"
+      android:layout_gravity="center"
+      android:layout_margin="30dp"
+      android:indeterminate="true"
+      android:indeterminateDrawable="@drawable/progress_bar_layout"
+      android:outlineAmbientShadowColor="@color/black"
+      android:padding="25dp"
       android:visibility="gone" />
 
     <LinearLayout
@@ -59,6 +65,20 @@
         android:fontFamily="@font/poppins"
         android:hint="@string/email_or_phone"
         android:inputType="textEmailAddress"
+        android:paddingStart="8dp"
+        android:singleLine="true" />
+
+      <EditText
+        android:id="@+id/new_password"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="@dimen/dimen_10"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/edittextbg"
+        android:fontFamily="@font/poppins"
+        android:hint="New Password"
+        android:inputType="textPassword"
         android:paddingStart="8dp"
         android:singleLine="true" />
 

@@ -1,6 +1,10 @@
 package com.collegeproject.personx.Utils;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -16,16 +20,25 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.collegeproject.personx.AlarmNotification;
 import com.collegeproject.personx.Model.TaskModel;
 import com.collegeproject.personx.NetworkFile.TaskNetwork;
 import com.collegeproject.personx.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.snackbar.Snackbar;
+import com.uk.tastytoasty.TastyToasty;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public class TaskCreateFrag extends BottomSheetDialogFragment {
@@ -38,7 +51,7 @@ public class TaskCreateFrag extends BottomSheetDialogFragment {
   private SharedPreferenceClass sharedPreferenceClass;
   private TaskNetwork taskNetwork;
   
-  private String taskValue = "Low";
+  private String taskValue = "Low", taskTime = "";
   
   
   public TaskCreateFrag() {
@@ -188,9 +201,18 @@ public class TaskCreateFrag extends BottomSheetDialogFragment {
       @Override
       public void onClick(View view) {
         view.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.circle_animation));
+        Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
+        TimePickerDialog timePickerDialog = new TimePickerDialog(context, new TimePickerDialog.OnTimeSetListener() {
+          @Override
+          public void onTimeSet(TimePicker timePicker, int i, int i1) {
+            taskTime = i + ":" + i1;
+          }
+        }, hour, minute, false);
+        timePickerDialog.show();
       }
     });
-    
     submit.setOnClickListener(view1 -> {
       String task = taskDes.getText().toString().trim();
       if (!TextUtils.isEmpty(task) && taskDate != null) {
@@ -198,6 +220,7 @@ public class TaskCreateFrag extends BottomSheetDialogFragment {
             taskDate.getText().toString(), taskNote.getText().toString(), taskValue, taskDate.getText().toString(),
             taskDate.getText().toString(), taskRepeat.toString(), "type");
         taskNetwork.addTask(myTask);
+        setAlarm();
         dismiss();
       } else {
         Snackbar.make(getView(), "Empty Field", Snackbar.LENGTH_LONG)
@@ -220,6 +243,27 @@ public class TaskCreateFrag extends BottomSheetDialogFragment {
     } else {
       tags.setVisibility(View.VISIBLE);
       category.setVisibility(View.VISIBLE);
+    }
+  }
+  
+  private void setAlarm() {
+    AlarmManager manager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+    
+    Intent intent = new Intent(getActivity().getApplicationContext(), AlarmNotification.class);
+    intent.putExtra("event", taskDes.getText().toString());
+    intent.putExtra("time", taskDate.getText().toString());
+    intent.putExtra("date", taskTime);
+    intent.putExtra("priority", taskValue);
+    intent.putExtra("category", taskCategory.getText().toString());
+    
+    PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_IMMUTABLE);
+    String dateandtime = taskDate.getText().toString() + " " + taskTime;
+    DateFormat formatter = new SimpleDateFormat("EEE, MMM d, yy hh:mm");
+    try {
+      Date date1 = formatter.parse(dateandtime);
+      manager.set(AlarmManager.RTC_WAKEUP, date1.getTime(), pendingIntent);
+    } catch (ParseException e) {
+      e.printStackTrace();
     }
   }
 }

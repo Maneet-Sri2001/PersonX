@@ -1,70 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical"
+  tools:context=".Fragments.HomePageFrag">
+
+  <HorizontalScrollView
+    android:id="@+id/horizontalScroll"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".Fragments.HomePageFrag">
+    android:layout_height="?attr/actionBarSize"
+    android:background="@color/purple_500">
 
-    <HorizontalScrollView
-        android:id="@+id/horizontalScroll"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/purple_500">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+    <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:textColor="@color/black"
-                android:id="@+id/allBtn"
-                android:layout_margin="5dp"
-                android:text="All"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:textColor="@color/black"
-                android:id="@+id/workBtn"
-                android:layout_margin="5dp"
-                android:text="work"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Personal"
-                android:id="@+id/personalBtn"
-                android:layout_margin="5dp"
-                android:backgroundTint="@color/white"
-                android:textColor="@color/black"/>
-            <Button
-                android:id="@+id/wishlistBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="wishlist"
-                android:layout_margin="5dp"
-                android:backgroundTint="@color/white"
-                android:textColor="@color/black"/>
-            <Button
-                android:id="@+id/birthdayBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="birthday"
-                android:layout_margin="5dp"
-                android:backgroundTint="@color/white"
-                android:textColor="@color/black"/>
-        </LinearLayout>
-
-
-    </HorizontalScrollView>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/task_recycler"
-        android:layout_width="match_parent"
+      <Button
+        android:id="@+id/allBtn"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="6dp"/>
+        android:layout_margin="5dp"
+        android:backgroundTint="@color/white"
+        android:clickable="true"
+        android:text="All"
+        android:textColor="@color/black" />
+
+      <Button
+        android:id="@+id/workBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:backgroundTint="@color/white"
+        android:text="work"
+        android:textColor="@color/black" />
+
+      <Button
+        android:id="@+id/personalBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:backgroundTint="@color/white"
+        android:text="Personal"
+        android:textColor="@color/black" />
+
+      <Button
+        android:id="@+id/wishlistBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:backgroundTint="@color/white"
+        android:text="wishlist"
+        android:textColor="@color/black" />
+
+      <Button
+        android:id="@+id/birthdayBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:backgroundTint="@color/white"
+        android:text="birthday"
+        android:textColor="@color/black" />
+    </LinearLayout>
+
+
+  </HorizontalScrollView>
+
+  <androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/task_recycler"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="6dp" />
 </LinearLayout>

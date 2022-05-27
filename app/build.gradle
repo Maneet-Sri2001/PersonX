@@ -69,4 +69,5 @@ dependencies {implementation 'com.google.firebase:firebase-auth:21.0.3'
     implementation 'com.github.KwabenBerko:News-API-Java:1.0.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.github.xabaras:RecyclerViewSwipeDecorator:1.4'
+    implementation 'androidx.work:work-runtime:2.7.1'
 }

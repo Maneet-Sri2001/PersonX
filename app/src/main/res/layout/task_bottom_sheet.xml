@@ -125,7 +125,6 @@
             <TextView
                 android:id="@+id/task_deadline"
                 android:layout_width="wrap_content"
-
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="?attr/selectableItemBackgroundBorderless"
@@ -196,7 +195,6 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:cropToPadding="true"
                 android:longClickable="true"
-                app:tint="@color/teal_700"
                 android:padding="3dp"
                 android:src="@drawable/ic_deadline" />
 

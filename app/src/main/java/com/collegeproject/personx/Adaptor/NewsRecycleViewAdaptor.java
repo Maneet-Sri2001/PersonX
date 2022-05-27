@@ -43,6 +43,7 @@ public class NewsRecycleViewAdaptor extends RecyclerView.Adapter<NewsRecycleView
     holder.des.setText(model.getTitle());
     holder.auth.setText(model.getAuthor());
     holder.pub.setText(model.getPublishAt());
+    holder.source.setText(model.getSourceName());
     Glide.with(holder.itemView).load(model.getImgUrl()).into(holder.img);
     holder.itemView.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -62,7 +63,7 @@ public class NewsRecycleViewAdaptor extends RecyclerView.Adapter<NewsRecycleView
   public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     
     ImageView img;
-    TextView auth, des, pub;
+    TextView auth, des, pub, source;
     
     public ViewHolder(@NonNull View itemView) {
       super(itemView);
@@ -71,6 +72,7 @@ public class NewsRecycleViewAdaptor extends RecyclerView.Adapter<NewsRecycleView
       des = itemView.findViewById(R.id.news_title);
       pub = itemView.findViewById(R.id.news_publishAt);
       auth = itemView.findViewById(R.id.news_author);
+      source = itemView.findViewById(R.id.news_source);
     }
     
     @Override
